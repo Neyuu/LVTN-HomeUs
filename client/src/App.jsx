@@ -35,6 +35,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user);
   return (
     <UserContextProvider>
       <ToastContainer
@@ -67,7 +68,7 @@ function App() {
           <Route path="/booking-success" element={<BookingSuccess />} />          
           <Route path="/contact/:id" element={<Contact />} />          
         </Route>
-        <Route element={<ProtectedRoute user={user?.isAdmin || false} />}>
+        <Route element={<ProtectedRoute user={user?.isAdmin} />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/admin-room" element={<AdminRoom />} />
           <Route path="/list-accept-booking" element={<ListAcceptBooking />} />
@@ -76,7 +77,7 @@ function App() {
           <Route path="/admin-booker" element={<AdminPersonChecker />} />
           <Route path="/admin-room/:id" element={<AdminDetailRoom />} />
         </Route>
-        <Route element={<ProtectedRoute user={user?.isBooker || false} />}>
+        <Route element={<ProtectedRoute user={user?.isBooker} />}>
           <Route path="/booker-dashboard" element={<AdminDashboard />} />         
           <Route path="/accept-booking" element={<AcceptBooking />} />         
           <Route path="/template-booking" element={<TemplateBooking />} />         

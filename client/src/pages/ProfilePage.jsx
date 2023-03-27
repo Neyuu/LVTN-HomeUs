@@ -26,6 +26,8 @@ export default function ProfilePage() {
 
   async function logout() {
     await axios.post("/logout");
+    localStorage.removeItem('isAdmin'); 
+    localStorage.removeItem('user');
     setRedirect("/");
     setUser(null);
   }

@@ -9,9 +9,9 @@ import Header from './pages/Admin/layouts/Header';
 import NavBar from "./pages/Admin/layouts/NavBar";
   
   const ProtectedRoute = ({ user, redirectPath = '/' }) => {
-    if (!user) {
-      return <Navigate to={redirectPath} replace />;
-    }
+    // if (!user) {
+    //   return <Navigate to={redirectPath} replace />;
+    // }
   
     return (
       <div>
