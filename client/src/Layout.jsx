@@ -1,4 +1,5 @@
 import Header from "./Header";
+import Footer from "./Footer";
 import {Outlet} from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
@@ -14,6 +15,8 @@ export default function Layout() {
       <div className={usePathname==="/"?"":"py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto"}>
         <Outlet />
       </div>
+      { !isAdmin && <Footer />}
+
     </div>
     
     
