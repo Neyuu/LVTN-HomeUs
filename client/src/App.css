@@ -1,0 +1,31 @@
+.label-upload{
+    font-weight: bold;
+    color: rgb(231, 77, 77);
+}
+
+.quote{
+    font-size: 14px;
+    font-style: italic;
+    margin: 5px 0;
+}
+
+.date{
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    width: 100%;
+    border-radius: 1rem;
+    border-width: 1px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.img-certify{
+    height: 150px;
+    width: 200px;
+    object-fit: cover;
+    position: absolute;
+    top: 75px;
+    right: 31px;
+}
