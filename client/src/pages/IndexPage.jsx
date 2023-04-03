@@ -61,7 +61,6 @@ export default function IndexPage() {
               <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <img class="rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/'+place.photos?.[0]} alt="" />
                 <div class="p-5">
-                  <h3 class="truncate text-l font-semibold tracking-tight text-gray-900 dark:text-white">{place.title}</h3>
                   <div class="flex items-center justify-between">
                     <div>
                       <span class="text-2xl font-bold text-gray-900 dark:text-white">{place.price}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
@@ -71,6 +70,7 @@ export default function IndexPage() {
                       <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>50m<sup>2</sup></span>
                     </div>
                   </div>
+                  <h3 class="truncate text-l font-semibold tracking-tight text-gray-900 dark:text-white">{place.title}</h3>
                   <p class="truncate font-normal text-gray-700 dark:text-gray-400">{place.address}</p>
                 </div>
               </div>
