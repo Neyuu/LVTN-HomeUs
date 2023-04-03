@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-
 export default function IndexPage() {
   const [places,setPlaces] = useState([]);
   useEffect(() => {
@@ -53,13 +52,29 @@ export default function IndexPage() {
             </div>
           </div>
         </div>
-      </div>
+      </div>      
 
       <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
-        <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+        <div class="mt-8 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:space-y-0 md:space-x-0">
           {places.length > 0 && places.map(place => (
-            <Link to={'/place/'+place._id}>
-              <div className="bg-gray-500 mb-2 rounded-2xl flex">
+            <Link to={'/place/'+place._id}>              
+              <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <img class="rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/'+place.photos?.[0]} alt="" />
+                <div class="p-5">
+                  <h3 class="truncate text-l font-semibold tracking-tight text-gray-900 dark:text-white">{place.title}</h3>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <span class="text-2xl font-bold text-gray-900 dark:text-white">{place.price}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
+                    </div>
+                    <div>
+                      <span class="mr-5 text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-bed mr-2"></i>1</span>
+                      <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>50m<sup>2</sup></span>
+                    </div>
+                  </div>
+                  <p class="truncate font-normal text-gray-700 dark:text-gray-400">{place.address}</p>
+                </div>
+              </div>
+              {/* <div className="bg-gray-500 mb-2 rounded-2xl flex">
                 {place.photos?.[0] && (
                   <img className="rounded-2xl object-cover aspect-square" src={'http://localhost:4000/'+place.photos?.[0]} alt=""/>
                 )}
@@ -68,10 +83,12 @@ export default function IndexPage() {
               <h3 className="text-sm text-gray-500">{place.title}</h3>
               <div className="mt-1">
                 <span className="font-bold">{place.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</span>/ tháng
-              </div>
+              </div> */}
             </Link>
           ))}
         </div>
+        {/* <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+        </div> */}
       </div>      
     </div>    
   );
