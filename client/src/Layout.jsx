@@ -12,7 +12,7 @@ export default function Layout() {
   return (
     <div>
       { !isAdmin && <Header />}
-      <div className={usePathname==="/"?"":"py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto"}>
+      <div className="">
         <Outlet />
       </div>
       { !isAdmin && <Footer />}
