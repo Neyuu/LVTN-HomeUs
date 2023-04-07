@@ -108,7 +108,9 @@ export default function PlacePage() {
   };
 
   return (
-    <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8">
+    <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+      
+      <div className="">
       <div className="float-right">
         <FacebookShareButton url="https://tailwindcss.com/docs/text-transform" quote="Title share blog" hashtag="#share">
           <FacebookIcon size={40} round={true}/>
@@ -345,5 +347,7 @@ export default function PlacePage() {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }
