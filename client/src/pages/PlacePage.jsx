@@ -109,19 +109,55 @@ export default function PlacePage() {
 
   return (
     <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
-      
-      <div className="">
-      <div className="float-right">
-        <FacebookShareButton url="https://tailwindcss.com/docs/text-transform" quote="Title share blog" hashtag="#share">
-          <FacebookIcon size={40} round={true}/>
-        </FacebookShareButton>
-        <EmailShareButton url="https://tailwindcss.com/docs/text-transform" quote="Title share blog" hashtag="#share">
-          <EmailIcon size={40} round={true}/>
-     </EmailShareButton>
+      <div className="md:grid md:grid-cols-5 gap-4 mb-4">
+        <div className="md:col-span-4">
+          <h1 class="text-3xl font-semibold tracking-tight leading-none">{place.title}</h1>
+          <AddressLink>{place.address}</AddressLink>
+          <span className="font-semibold mr-5 ml-1"><i class="fa-solid fa-dollar-sign mr-2"></i>{place?.packageLong.price/1000000} tr/tháng</span>
+          <span className="font-semibold mr-5"><i class="fa-solid fa-bed mr-2"></i>1</span>
+          <span className="font-semibold mr-5"><i class="fa-solid fa-table-cells mr-2"></i>50m<sup>2</sup></span>
+        </div>
+        <div className="float-right">
+          <span class="float-right mb-4 bg-blue-100 text-blue-800 text-s font-medium mr-2 px-2.5 py-0.5 rounded-full border-2 border-blue-400">Sẵn sàng giao dịch</span>
+          <div className="float-right">
+            <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+            <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+              <i class="fa-solid fa-plus"></i>
+            </button>            
+            <FacebookShareButton url="https://tailwindcss.com/docs/text-transform" quote="Title share blog" hashtag="#share">
+              <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                <i class="fa-brands fa-facebook"></i>
+              </button>
+            </FacebookShareButton>
+            <EmailShareButton url="https://tailwindcss.com/docs/text-transform" quote="Title share blog" hashtag="#share">
+              <button type="button" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                <i class="fa-solid fa-envelope"></i>
+              </button>
+            </EmailShareButton>
+          </div>
+        </div>
       </div>
-      <h1 className="text-3xl">{place.title}</h1>
-      <AddressLink>{place.address}</AddressLink>      
       <PlaceGallery place={place} />
+      <div className="mt-4 md:grid md:grid-cols-3 gap-4">
+        <div className="col-span-2">
+          <h2 className="my-4 font-semibold text-2xl">Tổng quan</h2>
+          {place.description}
+          <h2 className="my-4 font-semibold text-2xl">Thông tin cơ bản</h2>
+          <div className="md:grid md:grid-cols-2 gap-2">
+            <div></div>
+            <div></div>
+          </div>
+          <h2 className="my-4 font-semibold text-2xl">Tiện nghi</h2>
+          <h2 className="my-4 font-semibold text-2xl">Dịch vụ</h2>
+          <h2 className="my-4 font-semibold text-2xl">Tiện ích khu vực</h2>
+          <h2 className="my-4 font-semibold text-2xl">Xem trên bản đồ</h2>
+        </div>
+        <div>2</div>
+      </div>
+
+      <div className="">
       <div className="mt-8 mb-8 grid gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
         <div>
           <div className="my-4">

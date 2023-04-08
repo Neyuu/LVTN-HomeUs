@@ -29,7 +29,7 @@ export default function PlaceGallery({place}) {
 
   return (
     <div className="relative">
-      <div className="grid grid-cols-3 gap-2 rounded-lg overflow-hidden">
+      <div className="md:grid md:grid-cols-3 md:gap-2 rounded-lg overflow-hidden">
         {(place.photos?.length > 0 && place.photos?.length < 7) && place.photos?.map(photo => (
           <a data-fancybox="gallery" href={'http://localhost:4000/'+photo}>
             <img className="h-64 w-full object-cover" src={'http://localhost:4000/'+photo} alt=""/>
