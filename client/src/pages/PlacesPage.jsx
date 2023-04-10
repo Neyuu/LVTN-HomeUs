@@ -21,7 +21,7 @@ export default function PlacesPage() {
             Thêm Căn Hộ
           </Link>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
           {places.length > 0 && places.map(place => (
             <Link to={'/account/places/'+place._id} className="flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl">
               <div className="flex w-32 h-32 bg-gray-300 grow shrink-0">

@@ -144,7 +144,7 @@ export default function PlacesFormPage() {
   return (
     <div>
       <AccountNav />
-      <form onSubmit={savePlace}>
+      <form onSubmit={savePlace} className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
         {preInput(
           "Tên Căn Hộ",
           "Tiêu đề cho địa điểm của bạn. nên ngắn gọn và hấp dẫn như trong quảng cáo"

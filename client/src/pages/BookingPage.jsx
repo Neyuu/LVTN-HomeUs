@@ -26,7 +26,7 @@ export default function BookingPage() {
   }
 
   return (
-    <div className="my-8">
+    <div className="my-8 py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
       <h1 className="text-3xl">{booking.place.title}</h1>
       <AddressLink className="my-2 block">{booking.place.address}</AddressLink>
       <div className="bg-gray-200 p-6 my-6 rounded-2xl flex items-center justify-between">
