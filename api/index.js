@@ -105,8 +105,8 @@ app.get("/profile", (req, res) => {
   if (token) {
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
       if (err) throw err;
-      const { name, email, _id, avatar,address,phone,cmnd,issuedBy,dateEx } = await User.findById(userData.id);
-      res.json({ name, email, _id, avatar,address,phone,cmnd,issuedBy,dateEx });
+      const { name, email, _id, avatar,address,phone,cmnd,issuedBy,dateEx, balanceCoin } = await User.findById(userData.id);
+      res.json({ name, email, _id, avatar,address,phone,cmnd,issuedBy,dateEx , balanceCoin});
     });
   } else {
     res.json(null);
@@ -183,6 +183,7 @@ app.post("/places", (req, res) => {
       personBooker,
       status,
       memberStatus: false,
+      isExpired: false,
     });
     res.json(placeDoc);
   });
@@ -343,7 +344,27 @@ app.put("/change-status/:id", async (req, res) => {
 });
 
 app.get("/places", async (req, res) => {
-  res.json(await Place.find({ status: true, memberStatus: false }));
+  try {
+    const listAll = await Place.find({ status: true, memberStatus: false, isExpired: false });
+  
+    for (const item of listAll) {
+      const today = new Date(item.dateCurrent);
+      const timeExpired = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+  
+      if (today < timeExpired) {
+        console.log('hi');
+      } else {
+        console.log('man');
+        await Place.findByIdAndUpdate(item._id, { isExpired: true });
+      }
+    }
+    
+    const updatedList = await Place.find({ status: true, memberStatus: false, isExpired: false });
+    res.json(updatedList);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
 app.post("/bookings", async (req, res) => {
@@ -354,6 +375,7 @@ app.post("/bookings", async (req, res) => {
     checkOut,
     user,
     booker,
+    userMain,
     typeOption,
     numberOfNights,
     price,
@@ -375,6 +397,7 @@ app.post("/bookings", async (req, res) => {
     booker,
     numberOfNights,
     typeOption,
+    userMain,
     price,
     status: "booking",
     user: userData.id,
@@ -389,7 +412,30 @@ app.post("/bookings", async (req, res) => {
 
 app.get("/bookings", async (req, res) => {
   const userData = await getUserDataFromReq(req);
-  res.json(await Booking.find({ user: userData.id }).populate("place"));
+  res.json(await Booking.find({ user: userData.id })
+    .populate("place")
+    .populate({
+      path: "reviews",
+      populate: {
+        path: "idUser",
+        model: "User",
+      },
+    })
+  );
+});
+
+app.get("/bookings/receipt", async (req, res) => {
+  const userData = await getUserDataFromReq(req);
+  res.json(await Booking.find({ userMain: userData.id })
+    .populate("place")
+    .populate({
+      path: "reviews",
+      populate: {
+        path: "idUser",
+        model: "User",
+      },
+    })
+  );
 });
 
 app.get("/get-all-rooms", async (req, res) => {
@@ -521,6 +567,89 @@ app.put("/update-status/:id", async (req, res) => {
     }
 });
 
+app.put("/update-service/:id", async (req, res) => {
+  const response = await Booking.findOneAndUpdate(
+    { _id: mongoose.Types.ObjectId(req.params.id) },
+      { service: req.body.service },
+  )
+
+  if (response) {
+    await User.findByIdAndUpdate(
+      { _id: mongoose.Types.ObjectId(response.user)},
+      {
+        balanceCoin: req.body.balanceCoin
+      }
+      )
+      return res.status(200).json('success');
+  }
+})
+
+app.post("/add-service-comment/:id", async(req, res) => {
+  try {
+    const data = req.body;
+    Booking.findOne({ _id: req.params.id })
+      .then(user => 
+      {
+        console.log(user.reviews);
+        if (user.reviews.length > 0) {
+          const review = {
+            idUser: data.idUser,
+            comment: data.comment
+          };
+          const old = [
+            ...user.reviews
+          ]
+          Booking.findOneAndUpdate(
+            { _id: mongoose.Types.ObjectId(req.params.id) },
+            {
+              $push: {
+                reviews: {
+                  $each: [review],
+                  $position: 0, 
+                  $slice: -10, 
+                  $sort: { createdAt: -1 } 
+                }
+              }
+            },
+             { new: true }  
+           ).then(s => {
+             if(s)
+             res.json({ message: 'thành công'});        
+           })
+        } else {
+          const review = {
+            idUser: data.idUser,
+            comment: data.comment
+          };
+          Booking.findOneAndUpdate(
+            { _id: mongoose.Types.ObjectId(req.params.id) },
+            {
+              $push: {
+                reviews: {
+               $each : [review]
+             } } },
+             { new: true }  
+           ).then(s => {
+             if(s)
+             res.json({ message: 'thành công'});        
+           })
+       }
+    }
+    )
+    
+    
+
+    // checkPlace.set({ 
+    //   reviews: [review]
+    // })
+    // await checkPlace.save();
+  } catch (error) {
+    console.log('====================================');
+    console.log(error);
+    console.log('====================================');
+  }
+  })
+
 app.put("/update-profile/:id", async (req, res) => {
   const input = req.body;
   await User.findByIdAndUpdate(
@@ -545,5 +674,65 @@ app.get("/profile-show", (req, res) => {
   }
 });
 
+app.get("/filter-by-name/:name", async (req, res) => {
+  const name = req.params.name;
+  const data = await Place.find({ title: {$regex: name, $options: 'i'} });
+  if (data) {
+    res.json({ data: data });
+  }
+});
+
+app.get("/filter-by-price/:name", async (req, res) => {
+  const name = req.params.name;
+  Place.find({ 'packageLong.price': {$regex: new RegExp(name)}}, (err,data) => {
+    if (err) {
+      console.log('====================================');
+      console.log(err);
+      console.log('====================================');
+    } else {
+      res.json({ data: data });
+    }
+  });
+});
+
+
+app.get("/filter-by-type/:name", async (req, res) => {
+  const name = req.params.name;
+  Place.find({ '[name]price': {$lte: 5000000}}, (err,data) => {
+    if (err) {
+      console.log('====================================');
+      console.log(err);
+      console.log('====================================');
+    } else {
+      res.json({ data: data });
+    }
+  });
+});
+
+app.put("/update-coin/:id", async (req, res) => {
+  const input = req.body;
+  await User.findByIdAndUpdate(
+    { _id: mongoose.Types.ObjectId(req.params.id) },
+    {
+    ...input
+  },
+  )
+  res.json("success");
+})
+
+app.put("/add-to-time-expried/:id", async (req, res) => {
+
+  await Place.findOneAndUpdate(
+    { _id: mongoose.Types.ObjectId(req.params.id) },
+    {
+      isExpired: req.body.isExpired,
+      dateCurrent: req.body.dateCurrent
+    }
+  );
+  
+  await User.findByIdAndUpdate(req.body.idUser, { balanceCoin: Number(req.body.balance) - 100 });
+
+  return res.status(200).json('success')
+})
 
 app.listen(4000);

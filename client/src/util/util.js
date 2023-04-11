@@ -60,3 +60,7 @@ export const formatDate = (date) => {
     const formattedDate = now.toLocaleString('en-US', { timeZone: 'UTC' });
     return formattedDate;
 } 
+
+export const truncate = (source, size) => {
+    return source.length > size ? source.slice(0, size - 1) + "…" : source;
+  }
