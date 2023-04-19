@@ -19,12 +19,12 @@ export default function BookingsPage() {
       <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
           {bookings?.length > 0 && bookings.map(booking => (
-            <Link to={`/account/bookings/${booking._id}`} className="flex gap-4 border shadow rounded-2xl overflow-hidden transition duration-300 ease-in-out hover:scale-105">
-              <div className="w-64">
+            <Link to={`/account/bookings/${booking._id}`} className="grid grid-cols-3 gap-4 border shadow rounded-2xl overflow-hidden transition duration-300 ease-in-out hover:scale-105">
+              <div className="">
                 <PlaceImg place={booking.place} />
               </div>
-              <div className="py-3 pr-3 grow">
-                <h2 className="text-xl">{booking.place.title}</h2>
+              <div className="col-span-2 py-3 pr-3 grow">
+                <h2 className="truncate text-xl">{booking.place.title}</h2>
                 <div className="text-xl">
                   <BookingDates booking={booking} className="my-2 text-gray-500" />
                   <div className="flex gap-1">

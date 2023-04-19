@@ -85,7 +85,7 @@ export default function ProfilePage() {
   return (
     <div>
       <AccountNav />
-      <div className="mt-8 py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+      <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
         {subpage === "profile" && (
           <>
             <div className="mt-10 sm:mt-0">
