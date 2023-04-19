@@ -2,21 +2,28 @@ import {Link, useNavigate, useLocation} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "./UserContext.jsx";
 import axios from "axios";
+import React from 'react';
+import { Dropdown, Space } from 'antd';
 export default function Header() {
-  const { user } = useContext(UserContext);
+  const [redirect, setRedirect] = useState(null);
+  const { user, setUser } = useContext(UserContext);
   const usePathname = useLocation().pathname;
   const navigate = useNavigate();
 
+  const refresh = () => window.location.reload(true)
+
   const [profile, setProfile] = useState({
-    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80',
-    name: '',
-    email: '',
-    address: '',
-    phone: '',
-    cmnd: '',
-    issuedBy: '',
-    dateEx: '',
   })
+
+  async function logout() {
+    await axios.post("/logout");
+    setRedirect("/");
+    setUser(null);
+  }
+
+  if (redirect) {
+    return <Navigate to={redirect} />;
+  }
 
   useEffect(() => {
     fetch();
@@ -38,9 +45,88 @@ export default function Header() {
     }
   }
 
-  console.log('====================================');
-  console.log(user);
-  console.log('====================================');
+  const items = [
+    {
+      key: '0',
+      label: (
+        <Link to={'/account'} className="font-bold capitalize">
+          {user?.name}
+        </Link>
+      ),
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: '2',
+      label: (
+        <Link to={'/account/bookings'}>
+          Nhà thuê đã đặt
+        </Link>
+      ),
+    },
+    {
+      key: '3',
+      label: (
+        <Link to={'/account/places'}>
+          Nhà thuê của tôi
+        </Link>
+      ),
+    },
+    {
+      key: '4',
+      label: (
+        <Link to={'/account/contract'}>
+          Hợp đồng của tôi
+        </Link>
+      ),
+    },
+    {
+      key: '5',
+      label: (
+        <Link to={'/account'}>
+          Nhà thuê yêu thích
+        </Link>
+      ),
+    },
+    {
+      key: '6',
+      label: (
+        <Link to={'/account'}>
+          Chuyên viên của tôi
+        </Link>
+      ),
+    },
+    {
+      key: '7',
+      label: (
+        <Link to={'/account'}>
+          Lịch sử nạp tiền
+        </Link>
+      ),
+    },
+    {
+      key: '8',
+      label: (
+        <Link to={'/account'}>
+          Lịch sử thanh toán
+        </Link>
+      ),
+    },
+    
+    {
+      type: 'divider',
+    },
+    {
+      key: '10',
+      label: (
+        <div onClick={() => { logout(); refresh();}} className="font-bold text-red-600">
+          Đăng xuất
+        </div>
+      ),
+    },
+  ];
+
   return (
     <>
       <header>
@@ -52,22 +138,23 @@ export default function Header() {
                 <div class="flex items-center lg:order-2">
                     {
                       user
-                      ? <Link to={user?'/account':'/login'}>
-                          <img class="w-10 h-10 mr-5 rounded-full" src={profile.avatar} alt="Rounded avatar"/>
-                      </Link>
-                      : <Link to={user?'/account/places/new':'/login'} class={usePathname==="/"?"text-white hover:text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800":"text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"}>Đăng nhập</Link>
-                    }
-                    {!!user && (
-                      <>
-                      <div className="mr-3 font-bold">
-                        {user.name}
-                      </div>
-                      <div className="font-bold mr-3">
+                      ? <>
+                      <Dropdown menu={{ items }} placement="bottom" arrow>
+                        <a onClick={(e) => e.preventDefault()}>
+                          <Space>
+                            <div>
+                              <img class="w-10 h-10 mr-5 rounded-full" src={profile?.avatar} alt="Rounded avatar"/>
+                            </div>
+                          </Space>
+                        </a>
+                      </Dropdown>
+                      <div className="font-bold mr-4">
                           {user.balanceCoin} đ
                       </div>
                       </>
-                    )}
-                    <Link to={user?'/account':'/login'} class="text-white bg-indigo-600 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Đăng tin</Link>
+                      : <Link to={user?'/account/places/new':'/login'} class={usePathname==="/"?"text-white hover:text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800":"text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"}>Đăng nhập</Link>
+                    }
+                    <Link to={user?'/account/places/new':'/login'} class="text-white bg-indigo-600 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Đăng tin</Link>
                     <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>

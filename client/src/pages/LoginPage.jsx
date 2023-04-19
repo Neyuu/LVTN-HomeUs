@@ -9,6 +9,9 @@ export default function LoginPage() {
   const [redirect, setRedirect] = useState(false);
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const refresh = () => window.location.reload(true)
+
   async function handleLoginSubmit(ev) {
     ev.preventDefault();
     try {
@@ -27,6 +30,7 @@ export default function LoginPage() {
         navigate('/',{replace:true})
       }
       setUser(data);
+      refresh();
       alert('Login successful');
     } catch (e) {
       alert('Login failed');

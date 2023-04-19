@@ -3,7 +3,7 @@ export default function PlaceImg({place,index=0,className=null}) {
     return '';
   }
   if (!className) {
-    className = 'object-cover';
+    className = 'w-full h-64 bg-cover bg-center';
   }
   return (
     <img className={className} src={'http://localhost:4000/'+place.photos[index]} alt=""/>
