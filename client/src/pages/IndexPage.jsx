@@ -183,7 +183,7 @@ export default function IndexPage() {
           </a>
           </div>
         </div>
-        <div class="mt-8 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:space-y-0 md:space-x-0">
+        <div class="mt-8 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
           {places.length > 0 && places.map(place => (
             <Link to={'/place/'+place._id}>              
               <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105">
