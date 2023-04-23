@@ -75,11 +75,12 @@ const AdminUser = () => {
     }
   }
     return (
-      <div className="m-3">
-        <BreakCump
+      <div className="">
+        {/* <BreakCump
           text={"Quản Lý Người Dùng"}
-        />
-       
+        /> */}
+        <h2 className="font-bold text-black-300 mx-6 mb-1 text-2xl">Quản lý người dùng</h2>
+      
         <Space className="mt-3 ml-5">
         <Select
       style={{ width: 300 }}

@@ -57,7 +57,7 @@ const ProtectedRoute = ({ user, redirectPath = '/' }) => {
           icon: DashboardOutlined
       },
       {
-          name: 'Quản Lí Căn Hộ',
+          name: 'Quản Lí Nhà Thuê',
           path: '/admin-room',    
           icon: HomeOutlined
       },
