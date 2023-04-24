@@ -11,6 +11,11 @@ const placeSchema = new mongoose.Schema({
   price: Number,
   status: Boolean,
   memberStatus: Boolean,
+  isExpired: Boolean,
+  dateCurrent: {
+    type: Date,
+    default: Date.now // Set the default value of createdAt to the current time
+  },
   packageLong: {
       longPackageDate: String,
       price: Number
@@ -27,7 +32,11 @@ const placeSchema = new mongoose.Schema({
       comment: String,
       date: {type: Date, default: Date.now}
     }
-  ]
+  ],
+  areas: { type: String },
+  numberBed: {type: String}
+}, {
+  timestamps: true
 });
 
 const PlaceModel = mongoose.model('Place', placeSchema);

@@ -36,6 +36,7 @@ const AdminPersonChecker = () => {
   return (
     <div className="m-3">
       {/* <BreakCump text={"Quản Lý Người Dùng"} /> */}
+      <h2 className="font-bold text-black-300 px-6 pb-1 text-2xl">Quản lý chuyên viên</h2>
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">

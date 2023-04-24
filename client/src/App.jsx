@@ -29,13 +29,15 @@ import DetailBooking from './pages/Booker/DetailBooking';
 import TemplateBooking from './pages/Booker/TemplateBooking';
 import ListAcceptBooking from './pages/Admin/ListAcceptBooking';
 import Contact from './pages/Contact';
+import Room from './pages/Room';
+import ContractPage from './pages/ContractPage';
+import ContractOK from './pages/ContractOk';
 
 axios.defaults.baseURL = 'http://127.0.0.1:4000';
 axios.defaults.withCredentials = true;
 
 function App() {
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user);
   return (
     <UserContextProvider>
       <ToastContainer
@@ -59,16 +61,19 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/account" element={<ProfilePage />} />
           <Route path="/account/places" element={<PlacesPage />} />
+          <Route path="/account/contract" element={<ContractPage />} />
           <Route path="/account/places/new" element={<PlacesFormPage />} />
           <Route path="/account/places/:id" element={<PlacesFormPage />} />
           <Route path="/place/:id" element={<PlacePage />} />
           <Route path="/account/bookings" element={<BookingsPage />} />
+          <Route path="/account/bookings-contract/:id" element={<ContractOK />} />          
           <Route path="/account/bookings/:id" element={<BookingPage />} />          
           <Route path="/account/profile/:id" element={<BookerProfile />} />          
           <Route path="/booking-success" element={<BookingSuccess />} />          
           <Route path="/contact/:id" element={<Contact />} />          
+          <Route path="/compare-room" element={<Room />} />          
         </Route>
-        <Route element={<ProtectedRoute user={user?.isAdmin} />}>
+        <Route element={<ProtectedRoute user={user?.isAdmin || false} />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/admin-room" element={<AdminRoom />} />
           <Route path="/list-accept-booking" element={<ListAcceptBooking />} />
@@ -77,10 +82,10 @@ function App() {
           <Route path="/admin-booker" element={<AdminPersonChecker />} />
           <Route path="/admin-room/:id" element={<AdminDetailRoom />} />
         </Route>
-        <Route element={<ProtectedRoute user={user?.isBooker} />}>
+        <Route element={<ProtectedRoute user={user?.isBooker || false} />}>
           <Route path="/booker-dashboard" element={<AdminDashboard />} />         
           <Route path="/accept-booking" element={<AcceptBooking />} />         
-          <Route path="/template-booking" element={<TemplateBooking />} />         
+          <Route path="/template-booking/:id" element={<TemplateBooking />} />         
           <Route path="/detail-booking/:id" element={<DetailBooking />} />         
           </Route>
       </Routes>

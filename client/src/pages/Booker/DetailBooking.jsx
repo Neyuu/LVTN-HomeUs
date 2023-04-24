@@ -185,12 +185,13 @@ const DetailBooking = () => {
                 </p>
               </td>
               <td className="px-6 py-4" style={{ width: "300px" }}>
-                {detail?.checkIn && formatDate(detail?.checkIn) || "Dịch vụ dài hạn nên sẽ bắt đầu từ hôm nay"}
+                {(detail?.checkIn && formatDate(detail?.checkIn)) ||
+                  "Dịch vụ dài hạn nên sẽ bắt đầu từ hôm nay"}
               </td>
               <td className="px-6 py-4">
                 <button
                   className="round-full bg-black py-2 px-4 color-white"
-                  onClick={() => navigate("/template-booking")}
+                  onClick={() => navigate(`/template-booking/${id}`)}
                 >
                   Tải về
                 </button>
@@ -214,12 +215,6 @@ const DetailBooking = () => {
       {detail?.status === "review" ? (
         <div className="flex justify-center items-center mt-3">
           <button
-            className="bg-red-500 hover:bg-red-700 text-white font-light py-2 px-4 rounded-full mr-2"
-            onClick={() => handleBooking("cancel")}
-          >
-            Hủy Hợp Đồng
-          </button>
-          <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-light py-2 px-4 rounded-full"
             onClick={() => handleBooking("done")}
           >
@@ -227,9 +222,14 @@ const DetailBooking = () => {
           </button>
         </div>
       ) : (
-        <h3 className="text-center text-red-500 font-bold">
-          ĐANG ĐỢI XÁC NHẬN
-        </h3>
+        <div className="flex justify-center items-center mt-3">
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-light py-2 px-4 rounded-full mr-2"
+            onClick={() => handleBooking("cancel")}
+          >
+            Hủy Hợp Đồng
+          </button>
+        </div>
       )}
     </div>
   );

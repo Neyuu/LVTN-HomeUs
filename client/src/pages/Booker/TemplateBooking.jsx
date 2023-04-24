@@ -1,10 +1,37 @@
 import {useReactToPrint} from "react-to-print";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef,useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
+import { formatCurrentVND, getCurrentDate } from "../../util/util";
+import axios from "axios";
 
 const TemplateBooking = () => {
+  const [detail, setDetail] = useState();
     const navigate = useNavigate();
-    const ref = useRef();
+  const ref = useRef();
+  
+  const { id } = useParams();
+
+  const { month, day, year } = getCurrentDate();
+
+  useEffect(() => {
+    new Promise(async () => {
+      await fetchRoom();
+    });
+  }, []);
+
+  const fetchRoom = async () => {
+    try {
+      const res = await axios.get(`/get-list-detail-booker/${id}`);
+      if (res.status === 200) {
+        setDetail(res.data.data);
+      }
+    } catch (error) {
+      console.log("====================================");
+      console.log(error);
+      console.log("====================================");
+    }
+  };
 
     const handlePrint = useReactToPrint({
         content : ()=> ref.current,
@@ -12,6 +39,10 @@ const TemplateBooking = () => {
         pageStyle:"print",
         onAfterPrint: ()=> navigate(-1)
     })
+  
+  console.log('====================================');
+  console.log(detail);
+  console.log('====================================');
 
 
     return (
@@ -53,7 +84,7 @@ const TemplateBooking = () => {
                 fontSize: "16px",
               }}
             >
-              <strong>HỢP ĐỒNG MUA BÁN CHUYỂN NHƯỢNG QUYỀN&nbsp;</strong>
+              <strong>HỢP ĐỒNG THUÊ NHÀ&nbsp;</strong>
             </span>
             <br />
             <span
@@ -72,17 +103,7 @@ const TemplateBooking = () => {
                 fontFamily: "verdana, geneva, sans-serif",
               }}
             >
-              Hôm nay, ngày …… tháng ……… năm …………
-            </span>
-            <br /> 
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              {" "}
-              ......................................................................................................................................................
+              Hôm nay, ngày …{day}… tháng …{month}…… năm ……{ year}……
             </span>
             <br />
             <span
@@ -112,9 +133,7 @@ const TemplateBooking = () => {
               }}
             >
               {" "}
-              Chồng: Ông.................................................Sinh
-              năm
-              ................................................................
+               Ông..............{detail?.place?.owner?.name}.................................
             </span>
             <br />
             <span
@@ -124,9 +143,8 @@ const TemplateBooking = () => {
               }}
             >
               {" "}
-              CMND số...................................
-              do................................. cấp ngày
-              ............................................
+              Email
+              ..................{detail?.place?.owner?.email}.........................
             </span>
             <br />
             <span
@@ -138,41 +156,6 @@ const TemplateBooking = () => {
               {" "}
               Đăng ký thường trú tại
               :..............................……………….........................................................
-            </span>
-            <br />
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              {" "}
-              Và vợ: Bà................................................... Sinh
-              năm
-              ..................................................................
-            </span>
-            <br />
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              {" "}
-              CMND số...................................
-              do................................. cấp ngày
-              ............................................
-            </span>
-            <br />
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              {" "}
-              Đăng ký tạm trú tại
-              :..............................………………...............................................................
             </span>
             <br />
             <span
@@ -192,9 +175,7 @@ const TemplateBooking = () => {
               }}
             >
               {" "}
-              Chồng: Ông.................................................Sinh
-              năm
-              ................................................................
+              Ông....................{detail?.user?.name}...........................
             </span>
             <br />
             <span
@@ -204,44 +185,8 @@ const TemplateBooking = () => {
               }}
             >
               {" "}
-              CMND số...................................
-              do................................. cấp ngày
-              ...........................................
-            </span>
-            <br />
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              {" "}
-              Đăng ký thường trú tại
-              :..............................……………….........................................................
-            </span>
-            <br />
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              {" "}
-              Và vợ: Bà................................................... Sinh
-              năm
-              .................................................................
-            </span>
-            <br />
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              {" "}
-              CMND số...................................
-              do................................. cấp ngày
-              ...........................................
+              Email.............{detail?.user?.email}......................
+              
             </span>
             <br />
             <span
@@ -304,10 +249,7 @@ const TemplateBooking = () => {
                 fontFamily: "verdana, geneva, sans-serif",
               }}
             >
-              1. Đối tượng của hợp đồng này là ngôi nhà số: ……...........
-              đường................................
-              phường/xã………………..&nbsp;quận/huyện......................thành
-              phố/tỉnh................................. có thực trạng như sau :
+              1. Đối tượng của hợp đồng này là ngôi nhà: ……....<b>{detail?.place?.title}</b>.......&nbsp;quận/huyện/tỉnh.............<b>{detail?.place?.address}</b>............. có thực trạng như sau :
             </span>
           </p>
           <p style={{ textAlign: "justify" }}>
@@ -317,7 +259,7 @@ const TemplateBooking = () => {
                 fontFamily: "verdana, geneva, sans-serif",
               }}
             >
-              2. Nhà ở :
+              2. Nhà thuê :
             </span>
           </p>
           <p style={{ textAlign: "justify" }}>
@@ -327,7 +269,7 @@ const TemplateBooking = () => {
                 fontFamily: "verdana, geneva, sans-serif",
               }}
             >
-              - Tổng diện tích sử dụng: …………………………………………..m<sup>2</sup>
+              - Tổng diện tích sử dụng: ………………………{detail?.place?.areas}………………..m<sup>2</sup>
             </span>
           </p>
           <p style={{ textAlign: "justify" }}>
@@ -337,7 +279,7 @@ const TemplateBooking = () => {
                 fontFamily: "verdana, geneva, sans-serif",
               }}
             >
-              - Diện tích xây dựng: ………………………………………………..m<sup>2</sup>
+              - Số phòng ngủ: …………………………{detail?.place?.numberBed}……………………..m<sup>2</sup>
             </span>
           </p>
           <p style={{ textAlign: "justify" }}>
@@ -347,68 +289,8 @@ const TemplateBooking = () => {
                 fontFamily: "verdana, geneva, sans-serif",
               }}
             >
-              - Diện tích xây dựng của&nbsp;tầng trệt: ………………………………..m
-              <sup>2</sup>
-            </span>
-          </p>
-          <p style={{ textAlign: "justify" }}>
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              - Kết cấu nhà:&nbsp;…………………………………………………………
-            </span>
-          </p>
-          <p style={{ textAlign: "justify" }}>
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              - Số tầng:&nbsp;……………………………………………………………..
-            </span>
-          </p>
-          <p style={{ textAlign: "justify" }}>
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              3. Đất ở :
-            </span>
-          </p>
-          <p style={{ textAlign: "justify" }}>
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              - Thửa đất số:&nbsp;………………………………………………………..
-            </span>
-          </p>
-          <p style={{ textAlign: "justify" }}>
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              - Tờ bản đồ số:&nbsp;………………………………………………………
-            </span>
-          </p>
-          <p style={{ textAlign: "justify" }}>
-            <span
-              style={{
-                fontSize: "16px",
-                fontFamily: "verdana, geneva, sans-serif",
-              }}
-            >
-              - Diện tích: …………………………………………………………….m<sup>2</sup>
+              - Dịch vụ sẵn có: …………{detail?.place?.perks.length > 0 && detail?.place?.perks.toString()}
+            
             </span>
           </p>
           <p style={{ textAlign: "justify" }}>
@@ -475,7 +357,7 @@ const TemplateBooking = () => {
             >
               <strong>Điều 2</strong>: &nbsp;
               <strong>
-                Gía cả, phương thức thanh toán và thời hạn thực hiện
+                Giá cả, phương thức thanh toán và thời hạn thực hiện
               </strong>
             </span>
           </p>
@@ -486,8 +368,20 @@ const TemplateBooking = () => {
                 fontFamily: "verdana, geneva, sans-serif",
               }}
             >
-              1.Giá mua bán toàn bộ diện tích nhà đất ở nói trên đã được hai bên
-              thoả thuận là:…………....đ.
+              1.Giá thuê cho dịch vụ {
+                detail?.typeOption === 'longTerm' ? (
+                  <>
+                    Dài hạn - 
+                  {formatCurrentVND(detail?.place?.packageLong?.price)}
+                  </>
+                ): (
+                  <>
+                  Ngắn hạn - 
+                {formatCurrentVND(detail?.place?.packageLong?.price)}
+                </>
+                )
+              }
+             
             </span>
             <br />
             <span
@@ -540,8 +434,20 @@ const TemplateBooking = () => {
               }}
             >
               {" "}
-              * Đợt 1: Giao toàn bộ số tiền là ...........................đ cho
-              bên Bán.
+              * Đợt 1: 
+              {
+                detail?.typeOption === 'longTerm' ? (
+                  <>
+                   <b> Dài hạn  
+                  {detail?.place?.packageLong.longPackageDate}</b>
+                  </>
+                ): (
+                  <>
+                 <b> Ngắn hạn - 
+                {detail?.place?.packageLong.shortPackageDateStart} - {detail?.place?.packageLong.shortPackageDateEnd}</b>
+                </>
+                )
+              }
             </span>
             <br />
             <span

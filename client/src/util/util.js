@@ -60,3 +60,16 @@ export const formatDate = (date) => {
     const formattedDate = now.toLocaleString('en-US', { timeZone: 'UTC' });
     return formattedDate;
 } 
+
+export const truncate = (source, size) => {
+    return source.length > size ? source.slice(0, size - 1) + "…" : source;
+}
+  
+export const  getCurrentDate = () => {
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Month is zero-indexed, so we add 1
+    const year = date.getFullYear();
+    return { day, month, year };
+  }
+  
