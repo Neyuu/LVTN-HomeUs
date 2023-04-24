@@ -97,22 +97,22 @@ export default function Header() {
         </Link>
       ),
     },
-    {
-      key: '7',
-      label: (
-        <Link to={'/account'}>
-          Lịch sử nạp tiền
-        </Link>
-      ),
-    },
-    {
-      key: '8',
-      label: (
-        <Link to={'/account'}>
-          Lịch sử thanh toán
-        </Link>
-      ),
-    },
+    // {
+    //   key: '7',
+    //   label: (
+    //     <Link to={'/account'}>
+    //       Lịch sử nạp tiền
+    //     </Link>
+    //   ),
+    // },
+    // {
+    //   key: '8',
+    //   label: (
+    //     <Link to={'/account'}>
+    //       Lịch sử thanh toán
+    //     </Link>
+    //   ),
+    // },
     
     {
       type: 'divider',
@@ -120,7 +120,7 @@ export default function Header() {
     {
       key: '10',
       label: (
-        <div onClick={() => { logout(); refresh();}} className="font-bold text-red-600">
+        <div onClick={() => { logout();}} className="font-bold text-red-600">
           Đăng xuất
         </div>
       ),
