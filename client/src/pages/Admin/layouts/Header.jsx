@@ -11,7 +11,6 @@ const Header = () => {
     if (isAdmin) {
       localStorage.removeItem('isAdmin');
     }
-    localStorage.removeItem('user');
     navigate(`/login`, {replace:true});
   }
 

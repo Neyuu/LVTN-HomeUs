@@ -1,0 +1,19 @@
+.border-custom{
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+}
+
+.border-l{
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.border-r{
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.border-b{
+    border-bottom: 1px solid black ;
+}

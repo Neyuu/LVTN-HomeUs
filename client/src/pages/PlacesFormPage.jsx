@@ -22,6 +22,8 @@ export default function PlacesFormPage() {
   const [booker, setBooker] = useState("");
   const [listBooker, setListBooker] = useState([]);
   const [hide, setHide] = useState(false);
+  const [areas, setAreas] = useState('');
+  const [numberBed, setNumberBed] = useState(1);
   const [listLong, setListLong] = useState({
     longPackageDate: "",
     price: 0,
@@ -109,6 +111,8 @@ export default function PlacesFormPage() {
       ],
       personBooker: booker,
       price,
+      areas,
+      numberBed,
       status: hide
     };
     if (id) {
@@ -144,161 +148,179 @@ export default function PlacesFormPage() {
   return (
     <div>
       <AccountNav />
-      <form onSubmit={savePlace}>
-        {preInput(
-          "Tên Căn Hộ",
-          "Tiêu đề cho địa điểm của bạn. nên ngắn gọn và hấp dẫn như trong quảng cáo"
-        )}
-        <input
-          type="text"
-          value={title}
-          onChange={(ev) => setTitle(ev.target.value)}
-          placeholder="title, for example: My lovely apt"
-        />
-        {preInput("Địa Chỉ", "Địa Chỉ Chỗ Căn Hộ")}
-        <input
-          type="text"
-          value={address}
-          onChange={(ev) => setAddress(ev.target.value)}
-          placeholder="address"
-        />
-        {preInput("Hình Ảnh", "more = better")}
-        <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
-        {preInput("Mô tả", "Mô tả căn hộ")}
-        <textarea
-          value={description}
-          onChange={(ev) => setDescription(ev.target.value)}
-        />
-        {preInput("Dịch Vụ", "Hãy Chọn 1 trong các dịch vụ sau")}
-        <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-          <Perks selected={perks} onChange={setPerks} />
-        </div>
-        {preInput("Thông Tin Khác", "Một Số Thông Tin Khác")}
-        <textarea
-          value={extraInfo}
-          onChange={(ev) => setExtraInfo(ev.target.value)}
-        />
-        {preInput("Thời gian thuê", "Thêm Thông Tin Thời Gian Khi Thuê")}
+      <div className="mt-8 py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+        <form onSubmit={savePlace}>
+          {preInput(
+            "Tên Căn Hộ",
+            "Tiêu đề cho địa điểm của bạn. nên ngắn gọn và hấp dẫn như trong quảng cáo"
+          )}
+          <input
+            type="text"
+            value={title}
+            onChange={(ev) => setTitle(ev.target.value)}
+            placeholder="title, for example: My lovely apt"
+          />
+          {preInput("Địa Chỉ", "Địa Chỉ Chỗ Căn Hộ")}
+          <input
+            type="text"
+            value={address}
+            onChange={(ev) => setAddress(ev.target.value)}
+            placeholder="address"
+          />
+          {preInput("Hình Ảnh", "more = better")}
+          <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
+          {preInput("Mô tả", "Mô tả căn hộ")}
+          <textarea
+            value={description}
+            onChange={(ev) => setDescription(ev.target.value)}
+          />
+          {preInput("Dịch Vụ", "Hãy Chọn 1 trong các dịch vụ sau")}
+          <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+            <Perks selected={perks} onChange={setPerks} />
+          </div>
+          {preInput("Thông Tin Khác", "Một Số Thông Tin Khác")}
+          <textarea
+            value={extraInfo}
+            onChange={(ev) => setExtraInfo(ev.target.value)}
+          />
+          {preInput("Diện tích", "Tích số chiều dài , rộng")}
+          <input
+            type="text"
+            value={areas}
+            onChange={(ev) => setAreas(ev.target.value)}
+            placeholder="diện tích m2"
+          />
+          {preInput("Số phòng ngủ", "Số lượng giường trong phòng")}
+          <input
+            type="number"
+            min={1}
+            value={numberBed}
+            onChange={(ev) => setNumberBed(ev.target.value)}
+            placeholder="số giường"
+          />
+          {preInput("Thời gian thuê", "Thêm Thông Tin Thời Gian Khi Thuê")}
 
-        <h2 className="p-2 m-2 underline font-bold">Gói Ngắn Hạn</h2>
-        <div className="grid gap-2 grid-cols-2 border rounded-2xl p-4 m-2">
-          <div>
-            <h3 className="mt-2 -mb-1">Thời Gian Bắt Đầu</h3>
-            <input
-              type="date"
-              className="date"
-              value={listShort.shortPackageDateStart}
-              onChange={(ev) =>
-                setListShort((prev) => {
-                  return {
-                    ...prev,
-                    shortPackageDateStart: ev.target.value,
-                  };
-                })
-              }
-              placeholder="14"
-            />
+          <h2 className="p-2 m-2 underline font-bold">Gói Ngắn Hạn</h2>
+          <div className="grid gap-2 grid-cols-2 border rounded-2xl p-4 m-2">
+            <div>
+              <h3 className="mt-2 -mb-1">Thời Gian Bắt Đầu</h3>
+              <input
+                type="date"
+                className="date"
+                value={listShort.shortPackageDateStart}
+                onChange={(ev) =>
+                  setListShort((prev) => {
+                    return {
+                      ...prev,
+                      shortPackageDateStart: ev.target.value,
+                    };
+                  })
+                }
+                placeholder="14"
+              />
+            </div>
+            <div>
+              <h3 className="mt-2 -mb-1">Thời Gian Đi</h3>
+              <input
+                type="date"
+                className="date"
+                value={listShort.shortPackageDateEnd}
+                onChange={(ev) =>
+                  setListShort((prev) => {
+                    return {
+                      ...prev,
+                      shortPackageDateEnd: ev.target.value,
+                    };
+                  })
+                }
+                placeholder="11"
+              />
+            </div>
+            <div>
+              <h3 className="mt-2 -mb-1">Giá theo </h3>
+              <input
+                type="number"
+                value={listShort.price}
+                onChange={(ev) =>
+                  setListShort((prev) => {
+                    return {
+                      ...prev,
+                      price: ev.target.value,
+                    };
+                  })
+                }
+              />
+            </div>
           </div>
-          <div>
-            <h3 className="mt-2 -mb-1">Thời Gian Đi</h3>
-            <input
-              type="date"
-              className="date"
-              value={listShort.shortPackageDateEnd}
-              onChange={(ev) =>
-                setListShort((prev) => {
-                  return {
-                    ...prev,
-                    shortPackageDateEnd: ev.target.value,
-                  };
-                })
-              }
-              placeholder="11"
-            />
-          </div>
-          <div>
-            <h3 className="mt-2 -mb-1">Giá theo </h3>
-            <input
-              type="number"
-              value={listShort.price}
-              onChange={(ev) =>
-                setListShort((prev) => {
-                  return {
-                    ...prev,
-                    price: ev.target.value,
-                  };
-                })
-              }
-            />
-          </div>
-        </div>
 
-        <h2 className="p-2 m-2 underline font-bold">Gói Dài Hạn</h2>
-        <p className="text-orange-800">(Gói không định sẵn ngày kết thúc)</p>
-        <div className="grid gap-2 grid-cols-2 border rounded-2xl p-4 m-2">
-          <div>
-            <h3 className="mt-2 -mb-1">Thời Gian Bắt Đầu</h3>
-            <input
-              type="date"
-              className="date"
-              value={listLong.longPackageDate}
-              onChange={(ev) =>
-                setListLong((prev) => {
-                  return {
-                    ...prev,
-                    longPackageDate: ev.target.value,
-                  };
-                })
-              }
-            />
+          <h2 className="p-2 m-2 underline font-bold">Gói Dài Hạn</h2>
+          <p className="text-orange-800">(Gói không định sẵn ngày kết thúc)</p>
+          <div className="grid gap-2 grid-cols-2 border rounded-2xl p-4 m-2">
+            <div>
+              <h3 className="mt-2 -mb-1">Thời Gian Bắt Đầu</h3>
+              <input
+                type="date"
+                className="date"
+                value={listLong.longPackageDate}
+                onChange={(ev) =>
+                  setListLong((prev) => {
+                    return {
+                      ...prev,
+                      longPackageDate: ev.target.value,
+                    };
+                  })
+                }
+              />
+            </div>
+            <div>
+              <h3 className="mt-2 -mb-1">Giá theo tháng</h3>
+              <input
+                type="number"
+                value={listLong.price}
+                onChange={(ev) =>
+                  setListLong((prev) => {
+                    return {
+                      ...prev,
+                      price: ev.target.value,
+                    };
+                  })
+                }
+              />
+            </div>
           </div>
-          <div>
-            <h3 className="mt-2 -mb-1">Giá theo tháng</h3>
-            <input
-              type="number"
-              value={listLong.price}
-              onChange={(ev) =>
-                setListLong((prev) => {
-                  return {
-                    ...prev,
-                    price: ev.target.value,
-                  };
-                })
-              }
-            />
-          </div>
-        </div>
-        {preInput("Người tạo hợp đồng", "Chọn người tạo hợp dồng")}
+          {preInput("Người tạo hợp đồng", "Chọn người tạo hợp dồng")}
 
-        <div className="bg-white shadow mt-6  rounded-lg p-6">
-          <h3 className="text-gray-600 text-sm font-semibold mb-4">
-            Danh Sách Các Booker
-          </h3>
-          <ul className="flex items-center justify-center space-x-2">
-            {listBooker.map((item) => (
-              <li className="flex flex-col items-center space-y-2">
-                {/* Ring */}
-                <Link
-                  className="block bg-white p-1 rounded-full"
-                  to={`/account/profile/${item._id}`}
-                >
-                  <img className="w-16 rounded-full" src={item.avatar} />
-                </Link>
-                {/* Username */}
-                <span className="text-xs text-gray-500">{item.name}</span>
-                <input type="checkbox" checked={booker == item._id ? true: false} onChange={()=> handleChecker(item._id)} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="">
-        <h3 className="text-gray-600 text-sm font-semibold mb-4 pt-2">
-            Ẩn hiện bài viết
-          </h3>
-        <input type="checkbox" checked={hide ? true: false} onChange={()=> setHide(!hide)}/>
-        </div>
-        <button className="primary my-4">Lưu</button>
-      </form>
+          <div className="bg-white shadow mt-6  rounded-lg p-6">
+            <h3 className="text-gray-600 text-sm font-semibold mb-4">
+              Danh Sách Các Booker
+            </h3>
+            <ul className="flex items-center justify-center space-x-2">
+              {listBooker.map((item) => (
+                <li className="flex flex-col items-center space-y-2">
+                  {/* Ring */}
+                  <Link
+                    className="block bg-white p-1 rounded-full"
+                    to={`/account/profile/${item._id}`}
+                  >
+                    <img className="w-16 rounded-full" src={item.avatar} />
+                  </Link>
+                  {/* Username */}
+                  <span className="text-xs text-gray-500">{item.name}</span>
+                  <input type="checkbox" checked={booker == item._id ? true: false} onChange={()=> handleChecker(item._id)} />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="">
+          <h3 className="text-gray-600 text-sm font-semibold mb-4 pt-2">
+              Ẩn hiện bài viết
+            </h3>
+          <input type="checkbox" checked={hide ? true: false} onChange={()=> setHide(!hide)}/>
+          </div>
+          <button className="primary my-4">Lưu</button>
+        </form>
+      </div>
+      
     </div>
   );
 }

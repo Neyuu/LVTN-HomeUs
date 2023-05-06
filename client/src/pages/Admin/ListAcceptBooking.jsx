@@ -41,12 +41,12 @@ const ListAcceptBooking = () => {
     console.log('====================================');
     return (
         <>
-            <div className="p-4">
-            <BreakCump
+            <div className="">
+            {/* <BreakCump
           text={'Quay lại'}
           url={'/accept-booking'}
-          />
-                    <h2 className="font-bold text-black-300 px-6 py-4 text-xl">DANH SÁCH CÁC HỢP ĐỒNG ĐỢI DUYỆT</h2>
+          /> */}
+                    <h2 className="font-bold text-black-300 px-6 pb-1 text-2xl">Danh sách các hợp đồng đợi duyệt</h2>
                 <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
           <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
             <thead className="bg-gray-50">

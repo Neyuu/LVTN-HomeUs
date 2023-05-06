@@ -55,7 +55,11 @@ const NavBar = () => {
         path: '/list-accept-booking',  
         icon: Booker
         },
-  
+        {
+          name: 'Lịch sử nộp tiền',
+          path: '/list-invoice',  
+          icon: Booker
+          },
   ]
   }
 
