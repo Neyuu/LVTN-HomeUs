@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "antd": "^5.4.5",
+    "antd": "^5.4.7",
     "autoprefixer": "^10.4.13",
     "axios": "^1.2.2",
     "date-fns": "^2.29.3",
