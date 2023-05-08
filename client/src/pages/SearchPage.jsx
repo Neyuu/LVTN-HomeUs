@@ -72,6 +72,127 @@ export default function SearchPage() {
   }
 
   return (
+    <div className="py-8 px-8 flex flex-col max-w-6xl mx-auto mb-16">
+      <div className="grid grid-cols-4 gap-8">
+        <div className="col-span-2">
+        <label
+                htmlFor="default-search"
+                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+              >
+                Search
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="search"
+                  id="default-search"
+                  className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Nhập tên cần lọc"
+              value={name}
+              onChange={(e)=> setName(e.target.value)}
+                  required
+                />
+                <button
+              type="submit"
+              onClick={handleSearch}
+                  className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
+                >
+                  Search
+                </button>
+              </div>
+        </div>
+        <div>
+          <select
+            onChange={(e) => setPrice(e.target.value)}
+            className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value=""></option>
+            <option value="small">2-5tr</option>
+            <option value="medium">5-10tr</option>
+            <option value="large">trên 10tr</option>
+          </select>
+        </div>
+        <div>
+        <div className="" id="filter-section-mobile-1">
+          <div className="space-y-2">
+            <div className="flex items-center">
+              <input
+                id="filter-mobile-category-0"
+                type="radio"
+                checked={type === 'packageShort' ? true : false}
+                onClick={() => setType('packageShort')}
+                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              />
+              <label
+                htmlFor="filter-mobile-category-0"
+                className="ml-3 min-w-0 flex-1 text-gray-500"
+              >
+                Ngắn hạn
+              </label>
+            </div>
+            <div className="flex items-center">
+              <input
+                id="filter-mobile-category-1"
+                type="radio"
+                checked={type === 'packageLong' ? true : false}
+                onClick={() => setType('packageLong')}
+                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              />
+              <label
+                htmlFor="filter-mobile-category-1"
+                className="ml-3 min-w-0 flex-1 text-gray-500"
+              >
+                Dài hạn
+              </label>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="mt-8 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
+        {places.length > 0 &&
+          places.map((place) => (
+            <Link to={'/place/'+place._id}>              
+            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105">
+              <img class="rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/'+place.photos?.[0]} alt="" />
+              <div class="p-5">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-2xl font-bold text-gray-900 dark:text-white">{place.price}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
+                  </div>
+                  <div>
+                    <span class="mr-5 text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-bed mr-2"></i>1</span>
+                    <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>50m<sup>2</sup></span>
+                  </div>
+                </div>
+                <h3 class="truncate text-l font-semibold tracking-tight text-gray-900 dark:text-white">{place.title}</h3>
+                <p class="truncate font-normal text-gray-700 dark:text-gray-400">{place.address}</p>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+
+  );
+
+  return (
     <div className="grid grid-cols-3">
       <div className="border-t border-gray-200 px-4 py-6">
         <h3 className="-mx-2 -my-3 flow-root">
