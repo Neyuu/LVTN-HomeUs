@@ -18,6 +18,7 @@ import AdminRoom from './pages/Admin/AdminRoom';
 import AdminUser from './pages/Admin/AdminUser';
 import BookingSuccess from './pages/BookingSuccess';
 import SearchPage from './pages/SearchPage';
+import PriceTablePage from './pages/PriceTablePage';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -60,6 +61,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<IndexPage />} />
           <Route path="/search/:text" element={<SearchPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/account" element={<ProfilePage />} />
@@ -75,6 +77,7 @@ function App() {
           <Route path="/booking-success" element={<BookingSuccess />} />          
           <Route path="/contact/:id" element={<Contact />} />          
           <Route path="/compare-room" element={<Room />} />          
+          <Route path="/price-table" element={<PriceTablePage />} />          
         </Route>
         <Route element={<ProtectedRoute user={user?.isAdmin || false} />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />

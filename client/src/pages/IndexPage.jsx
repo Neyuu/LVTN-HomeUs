@@ -59,7 +59,7 @@ export default function IndexPage() {
                 <div class="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
                   <div class="relative dark:bg-gray-800 sm:rounded-lg">
                     <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
-                      <div class="w-full md:w-1/2">                        
+                      <div class="w-full">                        
                       <h3 className="-mx-2 -my-3 flow-root">
                         <label
                           htmlFor="default-search"
@@ -103,54 +103,6 @@ export default function IndexPage() {
                           </button>
                         </div>
                       </h3>
-                      </div>
-                      <div class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
-                      <select
-                        onChange={(e) => setPrice(e.target.value)}
-                        className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value=""></option>
-                        <option value="small">2-5tr</option>
-                        <option value="medium">5-10tr</option>
-                        <option value="large">trên 10tr</option>
-                      </select>
-                        <div className="" id="filter-section-mobile-1">
-                          <div className="space-y-6">
-                            <div className="flex items-center">
-                              <input
-                                id="filter-mobile-category-0"
-                                type="radio"
-                                checked={type === 'packageShort' ? true : false}
-                                onClick={() => setType('packageShort')}
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                              />
-                              <label
-                                htmlFor="filter-mobile-category-0"
-                                className="ml-3 min-w-0 flex-1 text-white"
-                              >
-                                Ngắn hạn
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="" id="filter-section-mobile-1">
-                          <div className="space-y-6">
-                            <div className="flex items-center">
-                              <input
-                                id="filter-mobile-category-1"
-                                type="radio"
-                                checked={type === 'packageLong' ? true : false}
-                                onClick={() => setType('packageLong')}
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                              />
-                              <label
-                                htmlFor="filter-mobile-category-1"
-                                className="ml-3 min-w-0 flex-1 text-white"
-                              >
-                                Dài hạn
-                              </label>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
