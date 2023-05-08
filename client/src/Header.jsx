@@ -17,7 +17,7 @@ export default function Header() {
 
   async function logout() {
     await axios.post("/logout");
-    setRedirect("/");
+    // setRedirect("/");
     setUser(null);
   }
 
@@ -120,9 +120,9 @@ export default function Header() {
     {
       key: '10',
       label: (
-        <div onClick={() => { logout();}} className="font-bold text-red-600">
-          Đăng xuất
-        </div>
+        <button onClick={logout} className="primary max-w-sm mt-2">
+          <Link to="/">Logout</Link>
+        </button>
       ),
     },
   ];
