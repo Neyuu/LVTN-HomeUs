@@ -19,7 +19,7 @@ export default function PriceTablePage() {
           </div>
         </div>
       </div>
-      <div className="relative -mt-32 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+      <div className="relative -mt-32 px-8 flex flex-col max-w-6xl mx-auto mb-16">
         <div class="space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
           <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-2xl shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
               <h5 class="mb-4 text-xl text-center font-medium text-blue-600 dark:text-gray-400">Miễn phí</h5>

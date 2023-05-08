@@ -53,7 +53,7 @@ export default function RegisterPage() {
           </div>
         </div>
       </div>
-      <div className="relative -mt-36 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+      <div className="relative -mt-36 px-8 flex flex-col max-w-6xl mx-auto">
         <section class="my-8">
           <div class="flex flex-col items-center justify-center px-6 mx-auto lg:py-0">
             {/* <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
