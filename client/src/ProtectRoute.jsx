@@ -28,6 +28,7 @@ const logOut = async() => {
     localStorage.removeItem('isAdmin');
   }
   navigate(`/login`, {replace:true});
+  refresh();
 }
 
 const userr = JSON.parse(localStorage.getItem('user'));
@@ -103,9 +104,12 @@ const items = [
   {
     key: '10',
     label: (
-      <div onClick={() => { logOut();}} className="font-bold text-red-600">
-        Đăng xuất
-      </div>
+      // <div onClick={() => { logOut();}} className="font-bold text-red-600">
+      //   Đăng xuất
+      // </div>
+      <button onClick={logOut} className="primary max-w-sm mt-2">
+        Logout
+      </button>
     ),
   },
 ];

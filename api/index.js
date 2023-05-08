@@ -511,12 +511,14 @@ app.get("/get-all-user-booker", async (req, res) => {
 });
 
 app.get("/get-all-user-booker-active", async (req, res) => {
-  const userData = await getUserDataFromReq(req);
+  // const userData = await getUserDataFromReq(req);
   const data = await User.find({ isBooker: true, acceptBooker: true });
   if (data) {
     res.json({ data: data });
   }
 });
+
+
 
 app.delete(`/remove-user/:id`, async (req, res) => {
   const id = req.params;
