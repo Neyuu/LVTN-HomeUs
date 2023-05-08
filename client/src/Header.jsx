@@ -130,10 +130,10 @@ export default function Header() {
   return (
     <>
       <header>
-        <nav class={usePathname==="/"||usePathname==="/price-table"?"container absolute left-2/4 z-30 mx-auto -translate-x-2/4 p-4 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800":"p-4 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800"}>
+        <nav class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"container absolute left-2/4 z-30 mx-auto -translate-x-2/4 p-4 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800":"p-4 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800"}>
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <Link to={'/'} className="flex items-center">
-                  <span className={usePathname==="/"||usePathname==="/price-table"?"self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white":"self-center text-xl font-semibold whitespace-nowrap dark:text-white"}>HomeUs</span>
+                  <span className={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white":"self-center text-xl font-semibold whitespace-nowrap dark:text-white"}>HomeUs</span>
                 </Link>
                 <div class="flex items-center lg:order-2">
                     {
@@ -152,7 +152,7 @@ export default function Header() {
                           {user.balanceCoin} đ
                       </div>
                       </>
-                      : <Link to={user?'/account/places/new':'/login'} class={usePathname==="/"||usePathname==="/price-table"?"text-white hover:text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800":"text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"}>Đăng nhập</Link>
+                      : <Link to={user?'/account/places/new':'/login'} class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"text-white hover:text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800":"text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"}>Đăng nhập</Link>
                     }
                     <Link to={user?'/account/places/new':'/login'} class="text-white bg-indigo-600 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Đăng tin</Link>
                     <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
@@ -164,22 +164,22 @@ export default function Header() {
                 <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                         <li>
-                          <Link to={"/"} class={usePathname==="/"||usePathname==="/price-table"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Trang chủ</Link>
+                          <Link to={"/"} class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Trang chủ</Link>
                         </li>
                         <li>
-                          <Link to={"/search"} class={usePathname==="/"||usePathname==="/price-table"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Cho thuê</Link>
+                          <Link to={"/search"} class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Cho thuê</Link>
                         </li>
                         <li>
-                            <a href="#" class={usePathname==="/"||usePathname==="/price-table"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Nạp tiền</a>
+                            <a href="#" class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Nạp tiền</a>
                         </li>
                         <li>
-                          <Link to={"/price-table"} class={usePathname==="/"||usePathname==="/price-table"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Bảng giá</Link>
+                          <Link to={"/price-table"} class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Bảng giá</Link>
                         </li>
                         <li>
-                            <a href="#" class={usePathname==="/"||usePathname==="/price-table"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Hướng dẫn</a>
+                            <a href="#" class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">Hướng dẫn</a>
                         </li>
                         <li>
-                            <div onClick={() => navigate('/compare-room')} class={usePathname==="/"||usePathname==="/price-table"?"cursor-pointer block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"cursor-pointer block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">So sánh</div>
+                            <div onClick={() => navigate('/compare-room')} class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"cursor-pointer block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 text-white":"cursor-pointer block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"} aria-current="page">So sánh</div>
                         </li>
                     </ul>
                 </div>
