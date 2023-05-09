@@ -72,7 +72,7 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="py-8 px-8 flex flex-col max-w-6xl mx-auto mb-16">
+    <div className="py-8 px-8 flex flex-col min-h-[75vh] max-w-6xl mx-auto mb-16">
       <div className="grid grid-cols-4 gap-8">
         <div className="col-span-2">
         <label
@@ -113,7 +113,7 @@ export default function SearchPage() {
               onClick={handleSearch}
                   className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
                 >
-                  Search
+                  Tìm kiếm
                 </button>
               </div>
         </div>
@@ -164,8 +164,8 @@ export default function SearchPage() {
         </div>
         </div>
       </div>
-
-      <div class="mt-8 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
+      <div class="mt-4 text-base font-semibold md:text-base lg:text-base">Tìm thấy {places.length} kết quả.</div>
+      <div class="mt-6 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
         {places.length > 0 &&
           places.map((place) => (
             <Link to={'/place/'+place._id}>              
@@ -187,6 +187,11 @@ export default function SearchPage() {
             </div>
           </Link>
         ))}
+        {places.length == 0 &&
+          <div className="mt-16 md:col-span-2 lg:col-span-3">
+            <div class="text-center text-gray-500 text-xl font-semibold tracking-tight leading-none md:text-2xl lg:text-3xl">Nhập từ khóa để tìm kiếm nhà thuê.</div>
+          </div>
+        }
       </div>
     </div>
 
