@@ -93,9 +93,6 @@ export default function IndexRechargePage() {
                         <Col className="py-10" span={12}>
                             <p className="msg">!!! Bạn cần phải có tài khoản trên website Homeus.vn để thực hiện nạp tiền trực tuyến qua paypal</p>
                             <p className="msg">- Nếu chưa có tài khoản: Bấm vào <Link style={{ fontWeight: '700' }} to="/register">đây</Link> để đăng ký</p>
-
-                            
-
                             <p className="msg">- Nếu đã là thành viên của Homeus nhấn vào <Link style={{ fontWeight: '700' }} to="/account/recharge">đây</Link> để bắt đầu nạp tiền thông qua ví điện tử paypal</p>
                         </Col>
                         <Col span={12}>

@@ -65,6 +65,19 @@
     width: 30%;
 }
 
+.center-quality-section {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+}
+.center-quality {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
 .center-paypal {
     display: block;
     margin-left: auto;

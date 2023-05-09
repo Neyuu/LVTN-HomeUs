@@ -3,15 +3,20 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Col, Divider, Row, Typography } from 'antd';
+import support from "../assets/support.png";
+import verify from "../assets/verify.png";
 
 export default function IndexPage() {
+  const { Title } = Typography;
   const [places, setPlaces] = useState([]);
+  const [placesNotVip, setPlacesNotVip] = useState([]);
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [type, setType] = useState('packageLong'); // packageShort
   const [listBooker, setListBooker] = useState([]);
   const navigate = useNavigate();
-  const [bookings,setBookings] = useState([]);
+  const [bookings, setBookings] = useState([]);
   useEffect(() => {
     new Promise(async () => {
       await getListBooker();
@@ -20,12 +25,15 @@ export default function IndexPage() {
     // axios.get("/places").then((response) => {
     //   setPlaces(response.data);
     // });
-    
+
     axios.get("/places").then((response) => {
       setPlaces(response.data);
     });
 
-    
+    axios.get("/place-not-vip").then((response) => {
+      setPlacesNotVip(response.data);
+    });
+
   }, []);
 
 
@@ -37,7 +45,7 @@ export default function IndexPage() {
   //   }
   // }, [type]);
 
-  const handleSearch = async() => {
+  const handleSearch = async () => {
     if (!name) {
       toast.error('Vui lòng nhập thông tin để tìm kiếm');
     } else {
@@ -57,7 +65,7 @@ export default function IndexPage() {
   const checking = (time) => {
     const today = new Date(time);
     const timeExpired = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)
-    
+
     if (today < timeExpired) {
       console.log('conf han');
     } else {
@@ -67,104 +75,127 @@ export default function IndexPage() {
 
   return (
     <>
-    <div>      
-      <div className="relative flex h-screen content-center items-center justify-center pt-16 pb-32">
-        <div className="absolute top-0 h-full w-full bg-[url('https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center" />
-        <div className="absolute top-0 h-full w-full bg-black/40 bg-cover bg-center" />
-        <div className="max-w-8xl container relative mx-auto">
-          <div className="flex flex-wrap items-center">
-            <div className="ml-auto mr-auto w-full px-4 text-center lg:w-8/12">
-              <h1 class="text-3xl font-bold tracking-tight leading-none text-white md:text-4xl lg:text-5xl dark:text-white">Xây dựng tổ ấm cùng HomeUs</h1>
-              <section class="mt-10 flex items-center">
-                <div class="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
-                  <div class="relative dark:bg-gray-800 sm:rounded-lg">
-                    <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
-                      <div class="w-full">                        
-                      <h3 className="-mx-2 -my-3 flow-root">
-                        <label
-                          htmlFor="default-search"
-                          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-                        >
-                          Search
-                        </label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg
-                              aria-hidden="true"
-                              className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
+      <div>
+        <div className="relative flex h-screen content-center items-center justify-center pt-16 pb-32">
+          <div className="absolute top-0 h-full w-full bg-[url('https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center" />
+          <div className="absolute top-0 h-full w-full bg-black/40 bg-cover bg-center" />
+          <div className="max-w-8xl container relative mx-auto">
+            <div className="flex flex-wrap items-center">
+              <div className="ml-auto mr-auto w-full px-4 text-center lg:w-8/12">
+                <h1 class="text-3xl font-bold tracking-tight leading-none text-white md:text-4xl lg:text-5xl dark:text-white">Xây dựng tổ ấm cùng HomeUs</h1>
+                <section class="mt-10 flex items-center">
+                  <div class="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
+                    <div class="relative dark:bg-gray-800 sm:rounded-lg">
+                      <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
+                        <div class="w-full">
+                          <h3 className="-mx-2 -my-3 flow-root">
+                            <label
+                              htmlFor="default-search"
+                              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
                             >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                              Search
+                            </label>
+                            <div className="relative">
+                              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg
+                                  aria-hidden="true"
+                                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                  />
+                                </svg>
+                              </div>
+                              <input
+                                type="search"
+                                id="default-search"
+                                className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Nhập tên cần lọc"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
                               />
-                            </svg>
-                          </div>
-                          <input
-                            type="search"
-                            id="default-search"
-                            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Nhập tên cần lọc"
-                        value={name}
-                        onChange={(e)=> setName(e.target.value)}
-                            required
-                          />
-                          <button
-                        type="submit"
-                        onClick={handleSearch}
-                            className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
-                          >
-                            Search
-                          </button>
+                              <button
+                                type="submit"
+                                onClick={handleSearch}
+                                className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
+                              >
+                                Search
+                              </button>
+                            </div>
+                          </h3>
                         </div>
-                      </h3>
                       </div>
                     </div>
                   </div>
-                </div>
-              </section>
+                </section>
+              </div>
             </div>
           </div>
         </div>
-      </div>      
 
-      <div className="mt-8 py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
-        <div class="flex items-center justify-between">
-          <div>
-            <h1 class="text-3xl font-bold tracking-tight leading-none dark:text-white">Nhà cho thuê mới nhất</h1>
-          </div>
-          <div>
-          <a href="#" class="inline-flex items-center font-medium text-primary-600 hover:text-blue-800 dark:text-primary-500 dark:hover:text-primary-700">
-              Xem tất cả
-              <svg class="ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          </a>
-          </div>
+        <div className="center-quality-section content-center items-center justify-center">
+          <Row className="my-10">
+            <Col className="center-quality" span={6}>
+              <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-verify-listing.svg" alt="verify" />
+              <span class="center-quality support-item">Cam kết xác thực</span>
+            </Col>
+            <Col span={6}>
+              <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-many-listing.svg" alt="verify" />
+              <span class="center-quality support-item">Dẫn đầu số lượng</span>
+            </Col>
+            <Col span={6}>
+              <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-save-money.svg" alt="verify" />
+              <span class="center-quality support-item">An toàn giao dịch</span>
+            </Col>
+            <Col span={6}>
+              <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-save-money-star.svg" alt="verify" />
+              <span class="center-quality support-item">Nhiều ưu đãi</span>
+            </Col>
+          </Row>
         </div>
-        <div class="mt-8 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
-          {places.length > 0 && places.map(place => (
-            <Link to={'/place/'+place._id}>              
-              <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105">
-                <img class="rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/'+place.photos?.[0]} alt="" />
-                <div class="p-5">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <span class="text-2xl font-bold text-gray-900 dark:text-white">{place.price}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
+
+
+        <div className="mt-8 py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+          
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-3xl font-bold tracking-tight leading-none dark:text-white">Nhà cho thuê nổi bật</h1>
+            </div>
+            <div>
+              <a href="/search" class="inline-flex items-center font-medium text-primary-600 hover:text-blue-800 dark:text-primary-500 dark:hover:text-primary-700">
+                Xem tất cả
+                <svg class="ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              </a>
+            </div>
+          </div>
+          <div class="my-10 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
+            {places.length > 0 && places.map(place => (
+              <Link to={'/place/' + place._id}>
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                  <img class="rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/' + place.photos?.[0]} alt="" />
+                  <div class="p-5">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <span class="text-2xl font-bold text-gray-900 dark:text-white">{place.price}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
+                      </div>
+                      <div>
+                        <span class="mr-5 text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-bed mr-2"></i>1</span>
+                        <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>50m<sup>2</sup></span>
+                      </div>
                     </div>
-                    <div>
-                      <span class="mr-5 text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-bed mr-2"></i>1</span>
-                      <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>50m<sup>2</sup></span>
-                    </div>
+                    <h3 class="truncate text-l font-semibold tracking-tight text-gray-900 dark:text-white">{place.title}</h3>
+                    <p class="truncate font-normal text-gray-700 dark:text-gray-400">{place.address}</p>
                   </div>
-                  <h3 class="truncate text-l font-semibold tracking-tight text-gray-900 dark:text-white">{place.title}</h3>
-                  <p class="truncate font-normal text-gray-700 dark:text-gray-400">{place.address}</p>
                 </div>
-              </div>
-              {/* <div className="bg-gray-500 mb-2 rounded-2xl flex">
+                {/* <div className="bg-gray-500 mb-2 rounded-2xl flex">
                 {place.photos?.[0] && (
                   <img className="rounded-2xl object-cover aspect-square" src={'http://localhost:4000/'+place.photos?.[0]} alt=""/>
                 )}
@@ -174,24 +205,68 @@ export default function IndexPage() {
               <div className="mt-1">
                 <span className="font-bold">{place.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</span>/ tháng
               </div> */}
-            </Link>
-          ))}
-        </div>
-        {/* <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+              </Link>
+            ))}
+          </div>
+          {/* <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         </div> */}
 
-        <div class="mt-16 flex items-center justify-between">
-          <div>
-            <h1 class="text-3xl font-bold tracking-tight leading-none dark:text-white">Nhà môi giới nổi bật</h1>
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-3xl font-bold tracking-tight leading-none dark:text-white">Nhà cho thuê mới nhất</h1>
+            </div>
+            <div>
+              <a href="/search" class="inline-flex items-center font-medium text-primary-600 hover:text-blue-800 dark:text-primary-500 dark:hover:text-primary-700">
+                Xem tất cả
+                <svg class="ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              </a>
+            </div>
           </div>
-          <div>
-          <a href="#" class="inline-flex items-center font-medium text-primary-600 hover:text-blue-800 dark:text-primary-500 dark:hover:text-primary-700">
-              Xem tất cả
-              <svg class="ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          </a>
+          <div class="my-10 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
+            {placesNotVip.length > 0 && placesNotVip.map(place => (
+              <Link to={'/place/' + place._id}>
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                  <img class="rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/' + place.photos?.[0]} alt="" />
+                  <div class="p-5">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <span class="text-2xl font-bold text-gray-900 dark:text-white">{place.price}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
+                      </div>
+                      <div>
+                        <span class="mr-5 text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-bed mr-2"></i>1</span>
+                        <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>50m<sup>2</sup></span>
+                      </div>
+                    </div>
+                    <h3 class="truncate text-l font-semibold tracking-tight text-gray-900 dark:text-white">{place.title}</h3>
+                    <p class="truncate font-normal text-gray-700 dark:text-gray-400">{place.address}</p>
+                  </div>
+                </div>
+                {/* <div className="bg-gray-500 mb-2 rounded-2xl flex">
+                {place.photos?.[0] && (
+                  <img className="rounded-2xl object-cover aspect-square" src={'http://localhost:4000/'+place.photos?.[0]} alt=""/>
+                )}
+              </div>
+              <h2 className="font-bold">{place.address}</h2>
+              <h3 className="text-sm text-gray-500">{place.title}</h3>
+              <div className="mt-1">
+                <span className="font-bold">{place.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</span>/ tháng
+              </div> */}
+              </Link>
+            ))}
           </div>
-        </div>
-        <div class="mt-8 grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+          <div class="mt-16 flex items-center justify-between">
+            <div>
+              <h1 class="text-3xl font-bold tracking-tight leading-none dark:text-white">Nhà môi giới nổi bật</h1>
+            </div>
+            <div>
+              <a href="#" class="inline-flex items-center font-medium text-primary-600 hover:text-blue-800 dark:text-primary-500 dark:hover:text-primary-700">
+                Xem tất cả
+                <svg class="ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              </a>
+            </div>
+          </div>
+          <div class="mt-8 grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {listBooker.map((item) => (
               // <span className="text-xs text-gray-500">{item.name}</span>
               <div class="text-center text-gray-500 dark:text-gray-400">
@@ -226,8 +301,8 @@ export default function IndexPage() {
             ))}
 
           </div>
+        </div>
       </div>
-    </div>
     </>
   );
 
@@ -236,49 +311,49 @@ export default function IndexPage() {
       <div className="border-t border-gray-200 px-4 py-6">
         <h3 className="-mx-2 -my-3 flow-root">
           {/* Expand/collapse section button */}
-          
-              <label
-                htmlFor="default-search"
-                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+
+          <label
+            htmlFor="default-search"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          >
+            Search
+          </label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Search
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <svg
-                    aria-hidden="true"
-                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </div>
-                <input
-                  type="search"
-                  id="default-search"
-                  className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Nhập tên cần lọc"
               value={name}
-              onChange={(e)=> setName(e.target.value)}
-                  required
-                />
-                <button
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <button
               type="submit"
               onClick={handleSearch}
-                  className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
-                >
-                  Search
-                </button>
-              </div>
-          
+              className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
+            >
+              Search
+            </button>
+          </div>
+
           <select
             onChange={(e) => setPrice(e.target.value)}
             className="block w-full p-4 mt-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -368,48 +443,48 @@ export default function IndexPage() {
       <div className="border-t border-gray-200 px-4 py-6">
         <h3 className="-mx-2 -my-3 flow-root">
           {/* Expand/collapse section button */}
-          
-              <label
-                htmlFor="default-search"
-                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+
+          <label
+            htmlFor="default-search"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          >
+            Search
+          </label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Search
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <svg
-                    aria-hidden="true"
-                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </div>
-                <input
-                  type="search"
-                  id="default-search"
-                  className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Nhập tên cần lọc"
               value={name}
-              onChange={(e)=> setName(e.target.value)}
-                  required
-                />
-                <button
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <button
               type="submit"
               onClick={handleSearch}
-                  className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
-                >
-                  Search
-                </button>
-              </div>
+              className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
+            >
+              Search
+            </button>
+          </div>
         </h3>
       </div>
 
