@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Col, Divider, Row, Typography } from 'antd';
 import support from "../assets/support.png";
-import verify from "../assets/verify.png";
+import homeus from "../assets/homeus.jpg";
 
 export default function IndexPage() {
   const { Title } = Typography;
@@ -164,7 +164,7 @@ export default function IndexPage() {
 
 
         <div className="mt-8 py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
-          
+
           <div class="flex items-center justify-between">
             <div>
               <h1 class="text-3xl font-bold tracking-tight leading-none dark:text-white">Nhà cho thuê nổi bật</h1>
@@ -266,7 +266,7 @@ export default function IndexPage() {
               </a>
             </div>
           </div>
-          <div class="mt-8 grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div class="my-8 grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {listBooker.map((item) => (
               // <span className="text-xs text-gray-500">{item.name}</span>
               <div class="text-center text-gray-500 dark:text-gray-400">
@@ -301,7 +301,25 @@ export default function IndexPage() {
             ))}
 
           </div>
+
+
         </div>
+      </div>
+      <hr className="mt-5 center" style={{ width: '60%' }} />
+      <div className="my-10 py-10">
+        <Row className="mx-auto" style={{ width: '80%' }}>
+          <Col className="py-0" span={12}>
+            <img className="center-paypal" src={homeus} alt="paypal" />
+          </Col>
+          <Col className="py-0" span={12}>
+            <Title level={2} className="support-item-title">Những gì bạn cần biết về chúng tôi</Title>
+            <ul style={{ lineHeight: '3.5rem' }}>
+              <li className="support-item">An tâm tìm kiếm nhà cho thuê nhanh chóng</li>
+              <li className="support-item">Xem đầy đủ thông tin tất cả các nhà thuê nổi bật</li>
+              <li className="support-item">Cập nhật tin mới nhất về giá cả nhà ở</li>
+            </ul>
+          </Col>
+        </Row>
       </div>
     </>
   );
