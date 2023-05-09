@@ -120,8 +120,8 @@ export default function Header() {
     {
       key: '10',
       label: (
-        <button onClick={logout} className="primary max-w-sm mt-2">
-          <Link to="/">Logout</Link>
+        <button onClick={logout} className="font-bold text-red-600 bg-transparent">
+          <Link to="/">Đăng xuất</Link>
         </button>
       ),
     },

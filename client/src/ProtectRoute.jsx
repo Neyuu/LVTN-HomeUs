@@ -104,11 +104,8 @@ const items = [
   {
     key: '10',
     label: (
-      // <div onClick={() => { logOut();}} className="font-bold text-red-600">
-      //   Đăng xuất
-      // </div>
-      <button onClick={logOut} className="primary max-w-sm mt-2">
-        Logout
+      <button onClick={logOut} className="font-bold text-red-600 bg-transparent">
+        Đăng xuất
       </button>
     ),
   },

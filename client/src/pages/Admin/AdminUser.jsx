@@ -3,7 +3,7 @@ import BreakCump from "../../components/BreakCump"
 import axios from "axios";
 import { formatCurrentVND } from "../../util/util";
 import { toast } from "react-toastify";
-import { Select, Space, Input, Button } from 'antd'; 
+import { Select, Space, Input, Button, Tooltip } from 'antd'; 
 
 const AdminUser = () => {
   const [listUser, setListUser] = useState([]);
@@ -135,7 +135,9 @@ const AdminUser = () => {
                   <td className="px-6 py-4">{`${e?.balanceCoin ? formatCurrentVND(e?.balanceCoin)  : 0}`}</td>
                   <td className="px-6 py-4">
                     <div className="flex justify-center gap-1">
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-light py-2 px-4 rounded-full" onClick={() => handleRemoveItem(e._id)}>Xóa</button>
+                      <Tooltip title="Xóa người dùng">
+                        <button className="bg-red-500 hover:bg-red-700 text-white font-light py-1 px-2.5 rounded-full" onClick={() => handleRemoveItem(e._id)}><i class="fa-solid fa-trash fa-xs"></i></button>
+                      </Tooltip>  
                     </div>
                   </td>
                 </tr>
