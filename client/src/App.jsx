@@ -19,6 +19,8 @@ import AdminUser from './pages/Admin/AdminUser';
 import BookingSuccess from './pages/BookingSuccess';
 import SearchPage from './pages/SearchPage';
 import PriceTablePage from './pages/PriceTablePage';
+import RechargePage from './pages/RechargePage';
+import IndexRechargePage from './pages/IndexRechargePage';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -35,6 +37,7 @@ import Room from './pages/Room';
 import ContractPage from './pages/ContractPage';
 import ContractOK from './pages/ContractOk';
 import ListInvoice from './pages/Admin/ListInvoice';
+
 
 axios.defaults.baseURL = 'http://127.0.0.1:4000';
 axios.defaults.withCredentials = true;
@@ -77,7 +80,9 @@ function App() {
           <Route path="/booking-success" element={<BookingSuccess />} />          
           <Route path="/contact/:id" element={<Contact />} />          
           <Route path="/compare-room" element={<Room />} />          
-          <Route path="/price-table" element={<PriceTablePage />} />          
+          <Route path="/price-table" element={<PriceTablePage />} />      
+          <Route path="/account/recharge" element={<RechargePage/>} />    
+          <Route path="/recharge" element={<IndexRechargePage/>} />  
         </Route>
         <Route element={<ProtectedRoute user={user?.isAdmin || false} />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />

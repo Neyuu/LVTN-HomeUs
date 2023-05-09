@@ -41,18 +41,18 @@ export default function AccountNav() {
                       <li>
                           <Link to={"/account/contract"} class={linkClasses('contract')}>Hợp đồng của tôi</Link>
                       </li>
-                      <li>
+                      {/* <li>
                           <Link to={"/account"} class="text-gray-800 font-medium text-sm px-2 lg:px-3 py-2 lg:py-2.5 focus:outline-none" aria-current="page">Nhà thuê yêu thích</Link>
                       </li>
                       <li>
                           <Link to={"/account"} class="text-gray-800 font-medium text-sm px-2 lg:px-3 py-2 lg:py-2.5 focus:outline-none" aria-current="page">Chuyên viên yêu thích</Link>
-                      </li>
+                      </li> */}
                       <li>
-                          <Link to={"/account"} class="text-gray-800 font-medium text-sm px-2 lg:px-3 py-2 lg:py-2.5 focus:outline-none" aria-current="page">Nạp tiền</Link>
+                          <Link to={"/account/recharge"} class={linkClasses('recharge')} aria-current="page">Nạp tiền</Link>
                       </li>
-                      <li>
+                      {/* <li>
                           <Link to={"/account"} class="text-gray-800 font-medium text-sm px-2 lg:px-3 py-2 lg:py-2.5 focus:outline-none" aria-current="page">Thanh toán</Link>
-                      </li>
+                      </li> */}
                       {/* <li>
                           <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Team</a>
                       </li>

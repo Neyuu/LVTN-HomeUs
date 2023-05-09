@@ -34,3 +34,48 @@
     top: -4px;
     right: 0px;
 }
+
+.section-support {
+    border: 7px dashed #e8eefc;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 50px;
+}
+
+.support-item-title{
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #f80;
+    text-transform: uppercase;
+}
+
+.support-item{
+    display: block;
+    color: #233762;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+.center-paypal {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.msg {
+    font-size: 1.1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
