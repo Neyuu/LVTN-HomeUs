@@ -141,27 +141,28 @@ export default function IndexPage() {
           </div>
         </div>
 
-        <div className="center-quality-section content-center items-center justify-center">
-          <Row className="my-10">
-            <Col className="center-quality" span={6}>
-              <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-verify-listing.svg" alt="verify" />
-              <span class="center-quality support-item">Cam kết xác thực</span>
-            </Col>
-            <Col span={6}>
-              <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-many-listing.svg" alt="verify" />
-              <span class="center-quality support-item">Dẫn đầu số lượng</span>
-            </Col>
-            <Col span={6}>
-              <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-save-money.svg" alt="verify" />
-              <span class="center-quality support-item">An toàn giao dịch</span>
-            </Col>
-            <Col span={6}>
-              <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-save-money-star.svg" alt="verify" />
-              <span class="center-quality support-item">Nhiều ưu đãi</span>
-            </Col>
-          </Row>
+        <div className="pt-4 px-8 flex flex-col max-w-6xl mx-auto">
+          <div className="content-center items-center justify-center">
+            <Row className="">
+              <Col className="" span={6}>
+                <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-verify-listing.svg" alt="verify" />
+                <div class="text-center support-item text-xl">Cam kết xác thực</div>
+              </Col>
+              <Col span={6}>
+                <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-many-listing.svg" alt="verify" />
+                <div class="text-center support-item text-xl">Dẫn đầu số lượng</div>
+              </Col>
+              <Col span={6}>
+                <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-save-money.svg" alt="verify" />
+                <span class="text-center support-item text-xl">An toàn giao dịch</span>
+              </Col>
+              <Col span={6}>
+                <img className="center-quality my-5" src="https://s3-cdn.rever.vn/p/v2.46.14/images/icon-save-money-star.svg" alt="verify" />
+                <span class="text-center support-item text-xl">Nhiều ưu đãi</span>
+              </Col>
+            </Row>
+          </div>
         </div>
-
 
         <div className="mt-8 py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
 
@@ -255,7 +256,7 @@ export default function IndexPage() {
             ))}
           </div>
 
-          <div class="mt-16 flex items-center justify-between">
+          <div class="mt-4 flex items-center justify-between">
             <div>
               <h1 class="text-3xl font-bold tracking-tight leading-none dark:text-white">Nhà môi giới nổi bật</h1>
             </div>
@@ -305,15 +306,15 @@ export default function IndexPage() {
 
         </div>
       </div>
-      <hr className="mt-5 center" style={{ width: '60%' }} />
-      <div className="my-10 py-10">
+      <hr className="mt-4 center" style={{ width: '60%' }} />
+      <div className="my-4 py-10">
         <Row className="mx-auto" style={{ width: '80%' }}>
-          <Col className="py-0" span={12}>
+          <Col className="py-0" span={10}>
             <img className="center-paypal" src={homeus} alt="paypal" />
           </Col>
-          <Col className="py-0" span={12}>
+          <Col className="py-0" span={14}>
             <Title level={2} className="support-item-title">Những gì bạn cần biết về chúng tôi</Title>
-            <ul style={{ lineHeight: '3.5rem' }}>
+            <ul style={{ lineHeight: '3rem' }}>
               <li className="support-item">An tâm tìm kiếm nhà cho thuê nhanh chóng</li>
               <li className="support-item">Xem đầy đủ thông tin tất cả các nhà thuê nổi bật</li>
               <li className="support-item">Cập nhật tin mới nhất về giá cả nhà ở</li>
