@@ -183,9 +183,24 @@ export default function PlacePage() {
           </div>
           <h2 className="my-4 font-semibold text-2xl">Tiện nghi</h2>
           <div className="md:grid md:grid-cols-3 gap-x-8 gap-y-2">
-            <div><i class="fa-regular fa-circle-check mr-2"></i>Wifi</div>
-            <div><i class="fa-regular fa-circle-check mr-2"></i>Thú cưng</div>
-            <div><i class="fa-regular fa-circle-check mr-2"></i>Bãi giữ xe</div>
+            {place?.perks?.includes("wifi") && (
+              <div><i class="fa-solid fa-wifi mr-2"></i>Wifi</div>
+            )}
+            {place?.perks?.includes("parking") && (
+              <div><i class="fa-solid fa-square-parking fa-lg mr-2"></i>Bãi giữ xe</div>
+            )}
+            {place?.perks?.includes("tv") && (
+              <div><i class="fa-solid fa-tv mr-2"></i>Tivi</div>
+            )}
+            {place?.perks?.includes("radio") && (
+              <div><i class="fa-solid fa-radio mr-2"></i>Radio</div>
+            )}
+            {place?.perks?.includes("pets") && (
+              <div><i class="fa-solid fa-dog fa-lg mr-2"></i>Thú cưng</div>
+            )}
+            {place?.perks?.includes("entrance") && (
+              <div><i class="fa-solid fa-signs-post fa-lg mr-2"></i>Lối đi riêng</div>
+            )}
           </div>
           <h2 className="my-4 font-semibold text-2xl">Dịch vụ</h2>
           <h2 className="my-4 font-semibold text-2xl">Tiện ích khu vực</h2>

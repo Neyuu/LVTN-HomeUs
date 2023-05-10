@@ -37,7 +37,8 @@ const Contact = () => {
 
 
     return (
-                  <div className="mt-10 sm:mt-0">
+      <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+        <div className="mt-10 sm:mt-0">
             <div className="md:grid"> 
               <div className="flex justify-center items-center">
                 <img
@@ -141,6 +142,8 @@ const Contact = () => {
               </div>
             </div>
           </div>
+      </div>
+                  
     )
 }
 
