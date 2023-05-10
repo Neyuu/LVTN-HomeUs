@@ -47,14 +47,11 @@
     display: block;
     margin-bottom: 10px;
     color: #f80;
-    text-transform: uppercase;
 }
 
 .support-item{
     display: block;
     color: #233762;
-    font-size: 1.3rem;
-    font-weight: bold;
     margin: 5px 0;
 }
 

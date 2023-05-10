@@ -11,7 +11,8 @@ import { isBefore, isAfter, differenceInCalendarDays } from "date-fns";
 import { FacebookShareButton, FacebookIcon, EmailShareButton, EmailIcon } from "react-share"
 import { UserContext } from "../UserContext";
 import { useContext } from "react";
-
+import { Checkbox, DatePicker, Space } from 'antd';
+const { RangePicker } = DatePicker;
 export default function PlacePage() {
   const { id } = useParams();
   const [place, setPlace] = useState(null);
@@ -233,7 +234,7 @@ export default function PlacePage() {
             </div>
             
           </div>
-          <h2 className="my-4 font-semibold text-2xl">Xem trên bản đồ</h2>
+          <h2 className="my-4 font-semibold text-2xl">Đặt nhà</h2>
         </div>
         <div>          
           <div class="my-8 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -269,8 +270,91 @@ export default function PlacePage() {
         </div>
       </div>
 
-      <div className="">
-      <div className="mt-8 mb-8 grid gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
+      <div className="my-4 grid gap-8 grid-cols-1 md:grid-cols-7">
+        <div className="col-span-2">
+          <div className="border p-6 rounded-2xl gap-2 cursor-pointer bg-white shadow rounded-lg">
+            <Checkbox checked={optionChecking === "longTerm" ? true : false}
+              className="mb-2 text-base font-bold flex justify-center"
+              onChange={() => {
+                setOptionChecking("longTerm");
+                setPrice(place?.packageLong.price);
+              }}>Gói Dài Hạn</Checkbox>
+            <div className="mt-4 grid gap-y-4 grid-cols-2 flex items-center">
+              <div className="font-semibold">Ngày Bắt Đầu</div>
+              <span class="bg-blue-100 text-blue-800 text-base text-center font-medium px-2.5 py-1 rounded-lg dark:bg-gray-700 dark:text-blue-400 border border-blue-400">{place?.packageLong.longPackageDate}</span>
+              <div className="font-semibold">Chu kỳ theo</div>
+              <span class="bg-green-100 text-green-800 text-base text-center font-medium px-2.5 py-1 rounded-lg dark:bg-gray-700 dark:text-blue-400 border border-green-400">Tháng</span>
+              <div className="font-semibold">Giá / tháng</div>
+              <span class="bg-pink-100 text-pink-800 text-base text-center font-medium px-2.5 py-1 rounded-lg dark:bg-gray-700 dark:text-blue-400 border border-pink-400">{formatCurrentVND(place?.packageLong.price)}</span>
+              
+            </div>
+            
+          </div>
+        </div>
+        <div className="col-span-2">
+          <div className="border p-6 rounded-2xl gap-2 cursor-pointer bg-white shadow rounded-lg">
+            <Checkbox checked={optionChecking === "shortTerm" ? true : false}
+              className="mb-2 text-base font-bold flex justify-center"
+              onChange={() => {
+                setOptionChecking("shortTerm");
+                setPrice(place?.packageShort.price);
+              }}>Gói Ngắn Hạn</Checkbox>
+            <div className="mt-4 grid gap-y-4 grid-cols-2 flex items-center">
+              <div className="font-semibold">Ngày Bắt Đầu</div>
+              <span class="bg-blue-100 text-blue-800 text-base text-center font-medium px-2.5 py-1 rounded-lg dark:bg-gray-700 dark:text-blue-400 border border-blue-400">{place?.packageShort.shortPackageDateStart}</span>
+              <div className="font-semibold">Ngày kết thúc</div>
+              <span class="bg-yellow-100 text-yellow-800 text-base text-center font-medium px-2.5 py-1 rounded-lg dark:bg-gray-700 dark:text-blue-400 border border-yellow-400">{place?.packageShort.shortPackageDateEnd}</span>
+              <div className="font-semibold">Giá / ngày</div>
+              <span class="bg-pink-100 text-pink-800 text-base text-center font-medium px-2.5 py-1 rounded-lg dark:bg-gray-700 dark:text-blue-400 border border-pink-400">{formatCurrentVND(place?.packageShort.price)}</span>
+              
+            </div>
+            
+          </div>
+        </div>
+        <div className="col-span-3">
+          {optionChecking && (
+            <div className="border bg-white shadow px-6 py-4 rounded-2xl h-full">
+              <div className="text-xl text-center font-bold mb-2">
+                {typeOption(optionChecking)} {optionChecking === "shortTerm" && (
+                  <span>({numberOfNights} ngày)</span>                    
+              )}
+              </div>
+              {optionChecking === "shortTerm" && (
+                <>
+                  <p className="text-sm mb-2">
+                    Ngày <b>CheckIn</b> và <b>Checkout</b> phải trong thời gian
+                    của gói
+                  </p>
+                  <RangePicker size="large" className="flex mx-8 mx-auto mb-2" value={[checkIn,checkOut]}
+                    onChange={(dates) => {setCheckIn(dates[0]);setCheckOut(dates[1])}}/>
+                </>
+              )}
+              <div className={optionChecking === "longTerm" ? "my-4" : ""}>
+                <div className="mb-2 italic text-sm">
+                  <p className="text-red-600">
+                    - Lưu ý * giá khi đặt sẽ tùy thuộc vào các option mình đã
+                    chọn. Quý Khách vui lòng chọn đúng options mà mình mong muốn
+                  </p>
+                  <p className="text-red-600">
+                    - Booker là người được nhà đưa tin chọn nên mọi vấn đề về an
+                    toàn và bảo mật đều đảm bảo
+                  </p>
+                </div>
+              </div>
+
+              <button className="primary" onClick={bookingRoom}>
+                Đặt Phòng
+                {numberOfNights > 0 && (
+                  <span> {formatCurrentVND(numberOfNights * price)}</span>
+                )}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="">  
+        {/* <div className="mt-8 mb-8 grid gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
         <div>
           <div className="border p-4 flex flex-col rounded-2xl gap-2 items-center cursor-pointer bg-white shadow mt-6  rounded-lg p-6">
             <input
@@ -376,7 +460,7 @@ export default function PlacePage() {
                   </div>
                 </>
               )}
-              <div className="flex">
+              <div className="">
                 <div className="py-3 px-4 italic text-sm">
                   <p className="text-red-600">
                     - Lưu ý * giá khi đặt sẽ tùy thuộc vào các option mình đã
@@ -387,7 +471,7 @@ export default function PlacePage() {
                     toàn và bảo mật đều đảm bảo
                   </p>
                 </div>
-              </div>
+              </div>             
 
               <button className="primary mt-4" onClick={bookingRoom}>
                 Đặt Phòng
@@ -398,7 +482,7 @@ export default function PlacePage() {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
       <div className="bg-white -mx-8 px-8 py-8 border-t">
         <div>
           <h2 className="font-semibold text-2xl">Thông Tin Khác</h2>
