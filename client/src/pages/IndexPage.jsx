@@ -127,7 +127,7 @@ export default function IndexPage() {
                                 onClick={handleSearch}
                                 className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
                               >
-                                Search
+                                Tìm kiếm
                               </button>
                             </div>
                           </h3>

@@ -53,10 +53,10 @@ const Room = () => {
   console.log('====================================');
 
   return (
-    <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+    <div className="py-4 px-8 flex flex-col min-h-[75vh] max-w-6xl mx-auto">
       {
         add.length < 1 ? (
-          <div className="mt-8 ">
+          <div className="mt-4">
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -95,9 +95,15 @@ const Room = () => {
             onClick={handleSearch}
             className="text-white absolute right-2.5 bottom-2.5 bg-primary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
           >
-            Search
+            Tìm kiếm
           </button>
         </div>
+        <div class="mt-4 text-base font-semibold md:text-base lg:text-base">Tìm thấy {room.length} kết quả.</div>
+        {room.length == 0 &&
+          <div className="mt-16 md:col-span-2 lg:col-span-3">
+            <div class="text-center text-gray-500 text-xl font-semibold tracking-tight leading-none md:text-2xl lg:text-3xl">Nhập từ khóa để tìm kiếm nhà thuê.</div>
+          </div>
+        }
       </div>
         ) : (
           <div className="mt-8 flex justify-center items-center">
@@ -115,7 +121,6 @@ const Room = () => {
         </div>
         )
       }
-
       <div className="mt-8 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:space-y-0 md:space-x-0 cursor-pointer">
         {loading === 'start' && room?.map((item) => (
           <div
