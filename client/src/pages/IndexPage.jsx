@@ -185,11 +185,11 @@ export default function IndexPage() {
                   <div class="p-5">
                     <div class="flex items-center justify-between">
                       <div>
-                        <span class="text-2xl font-bold text-gray-900 dark:text-white">{place.price}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
+                        <span class="text-2xl font-bold text-gray-900 dark:text-white">{place.packageLong.price/1000000}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
                       </div>
                       <div>
-                        <span class="mr-5 text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-bed mr-2"></i>1</span>
-                        <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>50m<sup>2</sup></span>
+                        <span class="mr-5 text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-bed mr-2"></i>{place.numberBed}</span>
+                        <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>{place.areas}m<sup>2</sup></span>
                       </div>
                     </div>
                     <h3 class="truncate text-l font-semibold tracking-tight text-gray-900 dark:text-white">{place.title}</h3>
@@ -231,11 +231,11 @@ export default function IndexPage() {
                   <div class="p-5">
                     <div class="flex items-center justify-between">
                       <div>
-                        <span class="text-2xl font-bold text-gray-900 dark:text-white">{place.price}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
+                        <span class="text-2xl font-bold text-gray-900 dark:text-white">{(place.packageLong.price/1000000).toFixed(0)}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
                       </div>
                       <div>
-                        <span class="mr-5 text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-bed mr-2"></i>1</span>
-                        <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>50m<sup>2</sup></span>
+                        <span class="mr-5 text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-bed mr-2"></i>{place.numberBed}</span>
+                        <span class="text-l font-semibold text-gray-900 dark:text-white"><i class="fa-solid fa-table-cells mr-2"></i>{place.areas}m<sup>2</sup></span>
                       </div>
                     </div>
                     <h3 class="truncate text-l font-semibold tracking-tight text-gray-900 dark:text-white">{place.title}</h3>
@@ -273,9 +273,9 @@ export default function IndexPage() {
               <div class="text-center text-gray-500 dark:text-gray-400">
                 <img class="mx-auto mb-4 w-36 h-36 rounded-full" src={item.avatar} alt="Joseph Avatar" />
                 <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">{item.name}</a>
+                  <Link to={`/account/profile/${item._id}`}>{item.name}</Link>
                 </h3>
-                <p>Sales</p>
+                <p>Chuyên viên</p>
                 <ul class="flex justify-center mt-4 space-x-4">
                   <li>
                     <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">

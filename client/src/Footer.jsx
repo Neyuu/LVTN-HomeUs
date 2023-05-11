@@ -1,17 +1,18 @@
 import {Link} from "react-router-dom";
+import homeus from "./assets/homeus-logo.png";
 
 export default function Footer() {
   return (
     <footer class="mt-5 p-4 bg-gray-100 sm:p-6 dark:bg-gray-800">
-      <div class="mx-auto max-w-screen-xl">
+      <div class="mt-4 mx-auto max-w-screen-xl">
           <div class="md:flex md:justify-between">
               <div class="mb-6 md:mb-0">
                   <Link to={'/'} class="flex items-center">
-                      {/* <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-8" alt="FlowBite Logo" /> */}
-                      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">HomeUs</span>
+                    <img src={homeus} class="mr-3 h-6 sm:h-9 md:h-20 bg-transparent" alt="HomeUs Logo" />
+                    {/* <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">HomeUs</span> */}
                   </Link>
               </div>
-              <div class="grid grid-cols-2 gap-8 sm:gap-8 sm:grid-cols-3">
+              <div class="grid grid-cols-2 sm:grid-cols-3">
                   <div>
                       <h2 class="mb-6 text-base font-semibold text-gray-900 dark:text-white">Về chúng tôi</h2>
                       <ul class="text-gray-600 dark:text-gray-400">
@@ -58,13 +59,13 @@ export default function Footer() {
                       <h2 class="mb-6 text-base font-semibold text-gray-900 dark:text-white">Liên hệ</h2>
                       <ul class="text-gray-600 dark:text-gray-400">
                           <li class="mb-4">
-                              <Link to={'/'} class="hover:underline">Số điện thoại</Link>
+                            <i class="fa-solid fa-phone mr-2"></i>0937497677
                           </li>
                           <li class="mb-4">
-                              <Link to={'/'} class="hover:underline">Địa chỉ</Link>
+                            <i class="fa-solid fa-location-dot mr-2"></i>Trường Sơn Q10 TPHCM
                           </li>
                           <li class="mb-4">
-                              <Link to={'/'} class="hover:underline">Mail</Link>
+                            <i class="fa-solid fa-envelope mr-2"></i>homeus@gmail.com
                           </li>
                           
                       </ul>

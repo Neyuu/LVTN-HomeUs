@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import BreakCump from "../../components/BreakCump";
 import { showStatus , showOption,formatCurrentVND } from "../../util/util";
+import { Tooltip } from 'antd';
 
 const ListAcceptBooking = () => {
 
@@ -106,7 +107,15 @@ const ListAcceptBooking = () => {
                       <div className="flex justify-end gap-4">
                                 {
                                     e?.status !== 'review' ? (
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-light py-2 px-4 rounded-full" onClick={() => handleChangeStatus(e._id)}>Duyệt hợp đồng</button>
+                                      <Tooltip title="Duyệt hợp đồng">
+                                        <button
+                                          className="bg-blue-500 hover:bg-blue-700 text-white font-light py-1 px-3 rounded-full"
+                                          onClick={() => handleChangeStatus(e._id)}
+                                        >
+                                          <i class="fa-solid fa-check-double fa-xs"></i>
+                                        </button>
+                                      </Tooltip>
+                                    // <button className="bg-blue-500 hover:bg-blue-700 text-white font-light py-2 px-4 rounded-full" onClick={() => handleChangeStatus(e._id)}>Duyệt hợp đồng</button>
                                     ) : (
                                             <p className="text-lime-500">Admin Đã duyệt</p>
                                     )

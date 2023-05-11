@@ -40,7 +40,7 @@ export default function IndexRechargePage() {
                             color = 'volcano';
                         }
                         return (
-                            <Tag color={color} key={tag}>
+                            <Tag color={color} key={tag} className="mb-1">
                                 {tag.toUpperCase()}
                             </Tag>
                         );
@@ -74,9 +74,9 @@ export default function IndexRechargePage() {
     ];
 
     return (
-        <>
+        <div className="pb-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
             <div style={{ justifyContent: 'center' }}>
-                <div className="px-10 py-5 nap-tien-atm">
+                <div className="px-10 py-5">
                     <Title level={2}>Phương thức chuyển khoản</Title>
                     <div className="px-10 py-5 my-10 nap-tien-truc-tiep" style={{ backgroundColor: '#ffeeba', height: 'cover' }}>
                         <Title level={4}>Lưu ý quan trọng:</Title>
@@ -90,7 +90,7 @@ export default function IndexRechargePage() {
 
                     <Title level={2}>Phương thức ví điện tử Paypal</Title>
                     <Row>
-                        <Col className="py-10" span={12}>
+                        <Col className="" span={12}>
                             <p className="msg">!!! Bạn cần phải có tài khoản trên website Homeus.vn để thực hiện nạp tiền trực tuyến qua paypal</p>
                             <p className="msg">- Nếu chưa có tài khoản: Bấm vào <Link style={{ fontWeight: '700' }} to="/register">đây</Link> để đăng ký</p>
                             <p className="msg">- Nếu đã là thành viên của Homeus nhấn vào <Link style={{ fontWeight: '700' }} to="/account/recharge">đây</Link> để bắt đầu nạp tiền thông qua ví điện tử paypal</p>
@@ -131,6 +131,6 @@ export default function IndexRechargePage() {
             </section>
 
 
-        </>
+        </div>
     );
 }

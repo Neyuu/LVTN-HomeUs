@@ -6,8 +6,12 @@ import PlacesPage from "./PlacesPage";
 import AccountNav from "../AccountNav";
 import { toast } from "react-toastify";
 import { PayPalButton } from "react-paypal-button-v2";
+import { Space, Table, Tag, Descriptions, Typography, Col, Divider, Row } from 'antd';
+import support from "../assets/support.png";
 
 export default function ProfilePage() {
+  const { Title } = Typography;
+  
   const [redirect, setRedirect] = useState(null);
   const { ready, user, setUser } = useContext(UserContext);
   const [price, setPrice] = useState("");
@@ -137,9 +141,9 @@ export default function ProfilePage() {
       <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
         {subpage === "profile" && (
           <>
-            <div className="mt-10 sm:mt-0">
+            <div className="mb-4 sm:mt-0 min-h-[25vh]">
               <div className="md:grid"> 
-                <h1>Nạp tiền bằng ví Paypal</h1>
+                <h1 class="mb-4 text-2xl font-semibold tracking-tight leading-none dark:text-white">Nạp tiền bằng ví Paypal</h1>
                 <div className="flex justify-center items-center" style={{ width: '300px' }}>
                 <input
                     placeholder="Nhập số tiền cần nạp"
@@ -161,6 +165,32 @@ export default function ProfilePage() {
           </>
         )}
         {subpage === "places" && <PlacesPage />}
+        <section className="mx-5 section section-support" style={{ textAlign: 'center', justifyContent: 'center' }}>
+          <Title level={3}>Liên hệ với chúng tôi nếu bạn cần hỗ trợ</Title>
+          <img className="center" src={support} alt="support" />
+          <Row className="my-10">
+              <Col span={6}>
+                  <span class="support-item-title">Hỗ trợ đăng tin 1</span>
+                  <a className="support-item" rel="nofollow" href="tel:0937497677">Điện thoại: 0937497677</a>
+                  <a className="support-item" rel="nofollow" href="https://zalo.me/0937497677">Zalo: 0937497677</a>
+              </Col>
+              <Col span={6}>
+                  <span class="support-item-title">Hỗ trợ đăng tin 2</span>
+                  <a className="support-item" rel="nofollow" href="tel:0937497677">Điện thoại: 0937497677</a>
+                  <a className="support-item" rel="nofollow" href="https://zalo.me/0937497677">Zalo: 0937497677</a>
+              </Col>
+              <Col span={6}>
+                  <span class="support-item-title">Giao dịch trực tiếp 1</span>
+                  <a className="support-item" rel="nofollow" href="tel:0937497677">Điện thoại: 0937497677</a>
+                  <p className="support-item">MM4 Trường Sơn P15 Q10 TPHCM</p>
+              </Col>
+              <Col span={6}>
+                  <span class="support-item-title">Giao dịch trực tiếp 2</span>
+                  <a className="support-item" rel="nofollow" href="tel:0937497677">Điện thoại: 0937497677</a>
+                  <a className="support-item" rel="nofollow" href="https://zalo.me/0937497677">Zalo: 0937497677</a>
+              </Col>
+          </Row>
+      </section>
       </div>
       
     </div>

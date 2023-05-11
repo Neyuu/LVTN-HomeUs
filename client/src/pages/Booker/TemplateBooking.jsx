@@ -740,7 +740,7 @@ const TemplateBooking = () => {
             </tbody>
           </table>
             </div>
-            <button onClick={handlePrint} className="bg-blue-500 hover:bg-blue-700 text-white font-light py-2 px-4 rounded-full">Tải xuống</button>
+            <button onClick={handlePrint} className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full float-right">In hợp đồng</button>
       </div>
     )
 } 

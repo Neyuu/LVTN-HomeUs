@@ -148,7 +148,7 @@ export default function PlacesFormPage() {
   return (
     <div>
       <AccountNav />
-      <div className="mt-8 py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+      <div className="mb-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
         <form onSubmit={savePlace}>
           {preInput(
             "Tên Căn Hộ",

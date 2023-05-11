@@ -53,9 +53,9 @@ const AdminPersonChecker = () => {
               <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                 Số Coin Sở Hữu
               </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              {/* <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                 Hành động
-              </th>
+              </th> */}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
