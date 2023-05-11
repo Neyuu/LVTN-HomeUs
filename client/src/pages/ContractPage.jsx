@@ -40,7 +40,17 @@ export default function BookingsPage() {
             </Link>
           ))}
         </div>
-        
+        {bookings.length == 0 &&
+          <div className="mt-16 mx-auto">
+            <div class="mb-8 text-center text-gray-500 text-xl font-semibold tracking-tight leading-none md:text-2xl lg:text-3xl"><i class="fa-solid fa-file-signature fa-2xl"></i></div>
+            <div class="mb-8 text-center text-gray-500 text-xl font-semibold tracking-tight leading-none md:text-2xl lg:text-3xl">Bạn chưa có hợp đồng nào.</div>
+            <div className="text-center">
+              <Link to="/account/places/new" className="px-12 bg-indigo-600 rounded-lg hover:bg-indigo-500 text-white font-semibold py-3">
+                Đăng tin
+              </Link>
+            </div>
+          </div>
+        }
       </div>
     </div>
   );

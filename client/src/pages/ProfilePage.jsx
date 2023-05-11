@@ -155,7 +155,7 @@ export default function ProfilePage() {
                     className="mt-1 ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>  
-                <div className="flex justify-center items-center" style={{ width: '300px' }}>
+                {/* <div className="flex justify-center items-center" style={{ width: '300px' }}>
                 <input
                     type="text"
                     value={price}
@@ -169,7 +169,7 @@ export default function ProfilePage() {
                       }} />
                     )
                   }
-                </div>
+                </div> */}
                 <div className="mt-5 md:mt-0 md:col-span-2">
 
                     <div className="shadow overflow-hidden sm:rounded-md">

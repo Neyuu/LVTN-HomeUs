@@ -140,13 +140,8 @@ export default function PlacesPage() {
   return (
     <div>
       <AccountNav />
-      <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
-      <div className="text-center">
-          <Link className="gap-1 bg-primary text-white py-2 px-6 rounded-full" to={'/account/places/new'}>
-          <i class="fa-solid fa-house-medical fa-lg mr-2"></i>
-            Thêm Căn Hộ
-          </Link>
-        </div>
+      <div className="px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
+        
         <div className="mt-8 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
           {places.length > 0 && places.map(place => (
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl">
@@ -174,6 +169,17 @@ export default function PlacesPage() {
             </div>
           ))}
         </div>
+        {places.length == 0 &&
+          <div className="mt-16 mx-auto">
+            <div class="mb-8 text-center text-gray-500 text-xl font-semibold tracking-tight leading-none md:text-2xl lg:text-3xl"><i class="fa-solid fa-house fa-2xl"></i></div>
+            <div class="mb-8 text-center text-gray-500 text-xl font-semibold tracking-tight leading-none md:text-2xl lg:text-3xl">Bạn chưa có nhà thuê nào.</div>
+            <div className="text-center">
+              <Link to="/account/places/new" className="px-12 bg-indigo-600 rounded-lg hover:bg-indigo-500 text-white font-semibold py-3">
+                Đăng tin
+              </Link>
+            </div>
+          </div>
+        }
       </div>
         
     </div>

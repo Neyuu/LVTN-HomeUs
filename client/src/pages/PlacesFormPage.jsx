@@ -5,7 +5,7 @@ import axios from "axios";
 import AccountNav from "../AccountNav";
 import { Navigate, useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import { Checkbox } from 'antd';
 export default function PlacesFormPage() {
   const { id } = useParams();
   const [title, setTitle] = useState("");
@@ -220,7 +220,7 @@ export default function PlacesFormPage() {
               />
             </div>
             <div>
-              <h3 className="mt-2 -mb-1">Thời Gian Đi</h3>
+              <h3 className="mt-2 -mb-1">Thời Gian Kết Thúc</h3>
               <input
                 type="date"
                 className="date"
@@ -237,7 +237,7 @@ export default function PlacesFormPage() {
               />
             </div>
             <div>
-              <h3 className="mt-2 -mb-1">Giá theo </h3>
+              <h3 className="mt-2 -mb-1">Giá theo ngày</h3>
               <input
                 type="number"
                 value={listShort.price}
@@ -311,13 +311,8 @@ export default function PlacesFormPage() {
               ))}
             </ul>
           </div>
-          <div className="">
-          <h3 className="text-gray-600 text-sm font-semibold mb-4 pt-2">
-              Ẩn hiện bài viết
-            </h3>
-          <input type="checkbox" checked={hide ? true: false} onChange={()=> setHide(!hide)}/>
-          </div>
-          <button className="primary my-4">Lưu</button>
+          <Checkbox checked={hide ? true: false} onChange={()=> setHide(!hide)} className="my-2 text-base font-medium">Ẩn hiện bài viết</Checkbox>
+          <button class="mt-8 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 float-right">Lưu</button>
         </form>
       </div>
       

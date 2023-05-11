@@ -152,9 +152,10 @@ export default function Header() {
                           </Space>
                         </a>
                       </Dropdown>
-                      <div className="font-bold mr-4">
+                      {user.balanceCoin && <div className="font-bold mr-4">
                           {user.balanceCoin} đ
-                      </div>
+                      </div>}
+                      
                       </>
                       : <Link to={user?'/account/places/new':'/login'} class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"text-white hover:text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800":"text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"}>Đăng nhập</Link>
                     }
