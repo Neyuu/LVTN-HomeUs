@@ -124,7 +124,7 @@ export default function PlacesPage() {
         (!place.isExpired) ? (
           <></>
         ): (
-          <div className="mt-2 mb-3">
+          <div className="mb-3">
             <span className="mr-3 text-l font-semibold tracking-tight text-gray-900 dark:text-white">Gia hạn</span>
             <Popover content={content} title="Thông báo" trigger="hover">
               <Button onClick={() => confirmCoin(place.dateCurrent, place._id)} className="mr-3 text-violet-600 border border-violet-600">Tin thường</Button>
@@ -150,7 +150,7 @@ export default function PlacesPage() {
           {places.length > 0 && places.map(place => (
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl">
               <img onClick={()=> handleRedirect(place._id)} class="cursor-pointer rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/'+place.photos?.[0]} alt="" />
-              <div onClick={()=> handleRedirect(place._id)} class="cursor-pointer px-5 pt-5">
+              <div onClick={()=> handleRedirect(place._id)} class="cursor-pointer px-5 py-3">
                 <div class="flex items-center justify-between">
                   <div>
                     <span class="text-2xl font-bold text-gray-900 dark:text-white">{(place.packageLong.price/1000000).toFixed(0)}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>
