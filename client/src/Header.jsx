@@ -95,8 +95,8 @@ export default function Header() {
     {
       key: '6',
       label: (
-        <Link to={'/account'}>
-          Chuyên viên của tôi
+        <Link to={'/account/recharge'}>
+          Nạp tiền
         </Link>
       ),
     },

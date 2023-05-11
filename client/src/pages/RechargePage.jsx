@@ -141,7 +141,7 @@ export default function ProfilePage() {
       <div className="py-4 px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
         {subpage === "profile" && (
           <>
-            <div className="mb-4 sm:mt-0 min-h-[25vh]">
+            <div className="mb-4 sm:mt-0">
               <div className="md:grid"> 
                 <h1 class="mb-4 text-2xl font-semibold tracking-tight leading-none dark:text-white">Nạp tiền bằng ví Paypal</h1>
                 <div className="flex justify-center items-center" style={{ width: '300px' }}>
@@ -164,7 +164,80 @@ export default function ProfilePage() {
             </div>
           </>
         )}
-        {subpage === "places" && <PlacesPage />}
+        <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+          <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+            <thead className="bg-gray-100">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-4 font-medium text-slate-900 text-base"
+                >
+                  Dollar ($)
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4 font-medium text-slate-900 text-base"
+                >
+                  VNĐ
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4 font-medium text-slate-900 text-base"
+                >
+                  Khuyến mãi (VNĐ)
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4 font-medium text-slate-900 text-base"
+                >
+                  Tổng tiền
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 border-t border-gray-100 text-slate-700 font-normal text-base">
+              <tr className="hover:bg-slate-50 cursor-pointer">
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">1
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">23.000
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">0
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">23.000
+                </td>
+              </tr>
+              <tr className="hover:bg-slate-50 cursor-pointer">
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">10
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">230.000
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">10.000
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">240.000
+                </td>
+              </tr>
+              <tr className="hover:bg-slate-50 cursor-pointer">
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">20
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">460.000
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">25.000
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">485.000
+                </td>
+              </tr>
+              <tr className="hover:bg-slate-50 cursor-pointer">
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">30
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">690.000
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">60.000
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 font-normal text-base">750.000
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <section className="mx-5 section section-support" style={{ textAlign: 'center', justifyContent: 'center' }}>
           <Title level={3}>Liên hệ với chúng tôi nếu bạn cần hỗ trợ</Title>
           <img className="center" src={support} alt="support" />

@@ -102,10 +102,14 @@ export default function PlacesPage() {
   const content = (
     <div>
       <p>Bài viết của bạn hết hạn xuất hiện vui lòng nộp thêm tiền để hiển thị lên</p>
-      <p>Giá để hiển thị : <b>100</b>coin</p>
-      <p>Tiến hành nộp tiền qua STK: 000000000</p>
-      <p>Ngân Hàng: VCB</p>
-      
+      <p>Giá để hiển thị gói thường: <b>100 </b>đ/tuần</p>
+    </div>
+  );
+
+  const contentVIP = (
+    <div>
+      <p>Bài viết của bạn hết hạn xuất hiện vui lòng nộp thêm tiền để hiển thị lên</p>
+      <p>Giá để hiển thị gói nâng cao: <b>300 </b>đ/tuần</p>
     </div>
   );
 
@@ -120,15 +124,15 @@ export default function PlacesPage() {
         (!place.isExpired) ? (
           <></>
         ): (
-           <Popover content={content} title="Thông báo" trigger="hover">
-                <Button onClick={() => confirmCoin(place.dateCurrent, place._id)} className="mb-2">Xác Nhập</Button>
-                <Button onClick={() => confirmVip(place.dateCurrent, place._id)}>Nâng cấp tin Vip</Button>
-                {/* {
-                  loader && (
-                    <PayPalButton amount={1} onSuccess={successPaymentHandler} />
-                  )
-                } */}
-              </Popover>
+          <div className="mt-2 mb-3">
+            <span className="mr-3 text-l font-semibold tracking-tight text-gray-900 dark:text-white">Gia hạn</span>
+            <Popover content={content} title="Thông báo" trigger="hover">
+              <Button onClick={() => confirmCoin(place.dateCurrent, place._id)} className="mr-3 text-violet-600 border border-violet-600">Tin thường</Button>
+            </Popover>
+            <Popover content={contentVIP} title="Thông báo" trigger="hover">
+              <Button onClick={() => confirmVip(place.dateCurrent, place._id)} className="text-pink-600 border border-pink-600">Tin nâng cao</Button>
+            </Popover>
+          </div>          
        )
      }
       </>
@@ -142,11 +146,11 @@ export default function PlacesPage() {
       <AccountNav />
       <div className="px-8 flex flex-col min-h-screen max-w-6xl mx-auto">
         
-        <div className="mt-8 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
+        <div className="mt-4 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
           {places.length > 0 && places.map(place => (
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl">
               <img onClick={()=> handleRedirect(place._id)} class="cursor-pointer rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/'+place.photos?.[0]} alt="" />
-              <div onClick={()=> handleRedirect(place._id)} class="cursor-pointer p-5">
+              <div onClick={()=> handleRedirect(place._id)} class="cursor-pointer px-5 pt-5">
                 <div class="flex items-center justify-between">
                   <div>
                     <span class="text-2xl font-bold text-gray-900 dark:text-white">{(place.packageLong.price/1000000).toFixed(0)}</span><span class="text-xl font-bold text-gray-900 dark:text-white"> tr/tháng</span>

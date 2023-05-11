@@ -179,7 +179,7 @@ export default function IndexPage() {
             </div>
           </div>
           <div class="my-10 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
-            {places.length > 0 && places.map(place => (
+            {places.length > 0 && places.slice(0, 7).map(place => (
               <Link to={'/place/' + place._id}>
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105">
                   <img class="rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/' + place.photos?.[0]} alt="" />
@@ -225,7 +225,7 @@ export default function IndexPage() {
             </div>
           </div>
           <div class="my-10 space-y-8 space-x-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-y-0 md:space-x-0">
-            {placesNotVip.length > 0 && placesNotVip.map(place => (
+            {placesNotVip.length > 0 && placesNotVip.slice(0, 7).map(place => (
               <Link to={'/place/' + place._id}>
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105">
                   <img class="rounded-t-lg w-full h-64 bg-cover bg-center" src={'http://localhost:4000/' + place.photos?.[0]} alt="" />
