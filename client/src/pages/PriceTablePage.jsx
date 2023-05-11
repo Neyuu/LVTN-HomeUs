@@ -4,6 +4,7 @@ import axios from "axios";
 import { UserContext } from "../UserContext.jsx";
 
 export default function PriceTablePage() {
+  const { user, setUser } = useContext(UserContext);
 
   return (
     <>
@@ -46,7 +47,9 @@ export default function PriceTablePage() {
                       <span class="text-base font-normal leading-tight text-gray-500">Tin nổi bật</span>
                   </li>
               </ul>
-              <button type="button" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Dùng ngay</button>
+              <Link to={'/'}>
+                <button type="button" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Dùng ngay</button>
+              </Link>
               <button type="button" class="mt-4 text-blue-600 border border-blue-600 hover:bg-blue-100 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Hướng dẫn</button>
           </div>
           <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-2xl shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -74,7 +77,9 @@ export default function PriceTablePage() {
                       <span class="text-base font-normal leading-tight text-gray-500">Tin nổi bật</span>
                   </li>
               </ul>
-              <button type="button" class="text-white bg-violet-600 hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Chọn ngay</button>
+              <Link to={user?'/account/places':'/login'}>
+                <button type="button" class="text-white bg-violet-600 hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Chọn ngay</button>
+              </Link>
               <button type="button" class="mt-4 text-violet-600 border border-violet-600 hover:bg-violet-100 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Xem demo</button>
           </div>
           <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-2xl shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -102,7 +107,9 @@ export default function PriceTablePage() {
                       <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">Tin nổi bật</span>
                   </li>
               </ul>
-              <button type="button" class="text-white bg-pink-600 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Chọn ngay</button>
+              <Link to={user?'/account/places':'/login'}>
+                <button type="button" class="text-white bg-pink-600 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Chọn ngay</button>
+              </Link>
               <button type="button" class="mt-4 text-pink-600 border border-pink-600 hover:bg-pink-100 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Xem demo</button>
           </div>
         </div>
