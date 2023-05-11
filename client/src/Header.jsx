@@ -5,6 +5,7 @@ import axios from "axios";
 import React from 'react';
 import { Dropdown, Space } from 'antd';
 import homeus from "./assets/homeus-logo.png";
+import homeuswhite from "./assets/homeus-logo-white.png";
 
 export default function Header() {
   const [redirect, setRedirect] = useState(null);
@@ -135,7 +136,7 @@ export default function Header() {
         <nav class={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"container absolute left-2/4 z-30 mx-auto -translate-x-2/4 p-4 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800":"p-4 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800"}>
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <Link to={'/'} className="flex items-center">
-                  <img src={homeus} class="mr-3 h-6 sm:h-9 md:h-14 bg-transparent" alt="HomeUs Logo" />
+                  {usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?<img src={homeuswhite} class="mr-3 h-6 sm:h-9 md:h-14 bg-transparent" alt="HomeUs Logo" />:<img src={homeus} class="mr-3 h-6 sm:h-9 md:h-14 bg-transparent" alt="HomeUs Logo" />}
                   {/* <span className={usePathname==="/"||usePathname==="/price-table"||usePathname==="/login"||usePathname==="/register"?"self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white":"self-center text-xl font-semibold whitespace-nowrap dark:text-white"}>HomeUs</span> */}
                 </Link>
                 <div class="flex items-center lg:order-2">

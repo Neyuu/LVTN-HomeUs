@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { Col, Divider, Row, Typography } from 'antd';
 import support from "../assets/support.png";
 import homeus from "../assets/homeus.jpg";
+import housebanner from "../assets/house-banner.jpg";
 
 export default function IndexPage() {
   const { Title } = Typography;
@@ -310,7 +311,7 @@ export default function IndexPage() {
       <div className="my-4 py-10">
         <Row className="mx-auto" style={{ width: '80%' }}>
           <Col className="py-0" span={10}>
-            <img className="center-paypal flex justify-center" src={homeus} alt="paypal" />
+            <img className="center-paypal flex justify-center w-64 h-40 bg-cover bg-center float-right mr-8" src={housebanner} alt="paypal" />
           </Col>
           <Col className="py-0" span={14}>
             <Title level={2} className="support-item-title">Những gì bạn cần biết về chúng tôi</Title>
