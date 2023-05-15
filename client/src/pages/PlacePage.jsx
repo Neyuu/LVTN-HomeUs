@@ -202,7 +202,13 @@ export default function PlacePage() {
               <div><i class="fa-solid fa-signs-post fa-lg mr-2"></i>Lối đi riêng</div>
             )}
           </div>
-          <h2 className="my-4 font-semibold text-2xl">Dịch vụ</h2>
+          <h2 className="my-4 font-semibold text-2xl">Dịch vụ cung cấp</h2>
+          <div className="md:grid md:grid-cols-3 gap-x-8 gap-y-2">
+            <div><i class="fa-solid fa-shirt mr-2"></i>Giặt đồ</div>
+            <div><i class="fa-solid fa-dog fa-lg mr-2"></i>Dắt thú cưng đi dạo</div>
+            <div><i class="fa-solid fa-utensils fa-lg mr-2"></i>Bữa sáng</div>
+            <div><i class="fa-solid fa-face-laugh-squint mr-2"></i>Khu giải trí</div>
+          </div>
           <h2 className="my-4 font-semibold text-2xl">Tiện ích khu vực</h2>
           <div className="md:grid md:grid-cols-2 gap-x-8 gap-y-2">
             <div>

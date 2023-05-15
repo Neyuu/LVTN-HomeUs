@@ -68,7 +68,7 @@ if (userr.isAdmin === true) {
         icon: TeamOutlined
     },
     {
-      name: 'Duyệt Booker',
+      name: 'Quản lý Chuyên Viên',
       path: '/admin-booker',  
       icon: TeamOutlined
     },

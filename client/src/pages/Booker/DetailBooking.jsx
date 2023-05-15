@@ -60,7 +60,7 @@ const DetailBooking = () => {
               <div className="relative">
                 <img
                   className="h-32 w-32 bg-white p-2 rounded-full shadow mb-4"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+                  src={detail?.place?.owner?.avatar}
                   alt=""
                 />
                 {
@@ -83,7 +83,7 @@ const DetailBooking = () => {
               <div className="relative">
                 <img
                   className="h-32 w-32 bg-white p-2 rounded-full shadow mb-4"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+                  src={detail?.user?.avatar}
                   alt=""
                 />
                 {
@@ -98,7 +98,7 @@ const DetailBooking = () => {
               <p className="font-semibold">{detail?.user?.email}</p>
               <div className="text-sm font-bold leading-normal text-gray-600 flex justify-center items-center">
                 <i class="fa-solid fa-user mr-2"></i>
-                Đại diện bên mua - {detail?.user?.name}
+                Đại diện bên thuê - {detail?.user?.name}
               </div>
             </div>
           </div>

@@ -108,7 +108,7 @@ export default function ContractOK() {
       <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
         <div>
           {booking.typeOption === "shortTerm" ? (
-            <BookingDates booking={booking} />
+            <BookingDates booking={booking} className={"font-bold mb-2"} />
           ) : (
             <>
               <h3 className="font-bold mb-2">Gói Dài Hạn</h3>

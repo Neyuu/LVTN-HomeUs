@@ -45,14 +45,15 @@ const AdminBookerDetail = () => {
           text={'Quay lại'}
           url={'/admin-booker'}
           />
-      <main className="grid gap-6 my-12 mx-12 px-2 mx-auto">
+      <main className="grid gap-6 my-6 mx-12 px-2 mx-auto">
         <aside className>
           <div className="bg-white shadow rounded-lg p-10">
             <div className="flex flex-col gap-1 text-center items-center">
               <div className="relative">
                 <img
                   className="h-32 w-32 bg-white p-2 rounded-full shadow mb-4"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+                  // src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+                  src={detail?.avatar?detail?.avatar:"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"}
                   alt=""
                               />
                               {
@@ -101,7 +102,7 @@ const AdminBookerDetail = () => {
         </aside>
         {detail?.acceptBooker ? (
           <button
-            className="bg-red-500 hover:bg-red-700 text-white text-center font-light py-2 px-4 rounded-full w-40"
+            className="bg-red-500 hover:bg-red-700 text-white text-center font-medium py-2 px-4 rounded-full w-40"
             onClick={() => handleAcceptBooker(detail?._id,false)}
           >
             Hủy Quyền
@@ -109,7 +110,7 @@ const AdminBookerDetail = () => {
               )
                   : (
                     <button
-                    className="bg-green-500 hover:bg-green-700 text-white text-center font-light py-2 px-4 rounded-full w-40"
+                    className="bg-green-500 hover:bg-green-700 text-white text-center font-medium py-2 px-4 rounded-full w-40"
                     onClick={() => handleAcceptBooker(detail?._id,true)}
                   >
                     Duyệt
