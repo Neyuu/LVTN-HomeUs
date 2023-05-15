@@ -514,30 +514,42 @@ export default function PlacePage() {
       </div>
       <div className="bg-white -mx-8 px-8 py-8 border-t">
         <div>
-          <h2 className="font-semibold text-2xl">Đánh giá</h2>
+          <h2 className="font-semibold text-2xl mb-4">Đánh giá</h2>
         </div>
         <div>
           {
             user && (
-              <div className="col-span-6 sm:col-span-3 mt-3 flex justify-center">
-            <input
-              type="text"
-              name="first_name"
-              id="first_name"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              autoComplete="given-name"
-              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-            />
-            {comment && (
-              <button
-                className="py-2 px-4 width-200 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={handleRating}
-              >
-                Đánh giá
-              </button>
-            )}
-          </div>
+              <div className="grid grid-cols-10 gap-4">
+                <div className="col-span-9">
+                  <input
+                    type="text"
+                    name="first_name"
+                    id="first_name"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    autoComplete="given-name"
+                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  />
+                </div>
+                <div>
+                  {comment ? (
+                    <button
+                      className="mt-1 py-2 px-4 width-200 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      onClick={handleRating}
+                    >
+                      Đánh giá
+                    </button>
+                    )
+                    :(
+                      <button
+                        className="mt-1 py-2 px-4 width-200 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      >
+                        Đánh giá
+                      </button>
+                    )
+                  }
+                </div>                
+              </div>
             )
           }
           {
