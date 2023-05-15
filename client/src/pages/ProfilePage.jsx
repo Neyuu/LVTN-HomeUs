@@ -142,17 +142,8 @@ export default function ProfilePage() {
                 <div className="flex justify-center items-center">
                   <img
                     className="h-32 w-32 bg-white p-2 rounded-full shadow mb-4"
-                    src={profile.avatar}
+                    src={`http://localhost:4000/${profile?.avatar}`}
                     alt=""
-                  />
-                  <input
-                    type="text"
-                    name="first_name"
-                    value={profile.avatar}
-                    onChange={(e)=>onChangeInput('avatar',e.target.value)}
-                    id="first_name"
-                    placeholder="Nhập link ảnh"
-                    className="mt-1 ml-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>  
                 {/* <div className="flex justify-center items-center" style={{ width: '300px' }}>

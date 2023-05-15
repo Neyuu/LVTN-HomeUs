@@ -17,20 +17,22 @@ export default function LoginPage() {
     try {
       const { data } = await axios.post('/login', { email, password });
 
-      if (data.isAdmin) {
-        localStorage.setItem('isAdmin', data.isAdmin);
-        localStorage.setItem('user', JSON.stringify(data));
-        navigate('/admin-dashboard',{replace:true})
+      if (data) {
+        if (data.isAdmin) {
+          localStorage.setItem('isAdmin', data.isAdmin);
+          localStorage.setItem('user', JSON.stringify(data));
+          navigate('/admin-dashboard',{replace:true})
+        }
+        if (data.isBooker) {
+          localStorage.setItem('user', JSON.stringify(data));
+          navigate('/booker-dashboard',{replace:true})
+        }
+        if (!data.isAdmin && !data.isBooker) {
+          navigate('/',{replace:true})
+        }
+        setUser(data);
+        refresh();
       }
-      if (data.isBooker) {
-        localStorage.setItem('user', JSON.stringify(data));
-        navigate('/booker-dashboard',{replace:true})
-      }
-      if (!data.isAdmin && !data.isBooker) {
-        navigate('/',{replace:true})
-      }
-      setUser(data);
-      refresh();
       alert('Login successful');
     } catch (e) {
       alert('Login failed');

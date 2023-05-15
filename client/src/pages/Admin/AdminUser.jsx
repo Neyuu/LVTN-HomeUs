@@ -10,7 +10,8 @@ const AdminUser = () => {
   const [coin, setCoin] = useState({
     id: '',
     coin: ''
-  })
+  });
+
   const [beforeCoin, setBeforeCoin] = useState(0);
 
   const changeValueCoin = (type, value) => {
@@ -64,12 +65,33 @@ const AdminUser = () => {
       const res = await axios.put(`/update-coin/${coin.id}`,{balanceCoin: Number(coin.coin) + Number(beforeCoin)});
       if (res.status === 200) {
         await fetching();
-        toast.success('Tăng số coin thành công')
-        setCoin({
-          id: '',
-          coin: ''
-        })
+        const userHere = await axios.get(`/detail-profile/${coin.id}`);
+        if (userHere) {
+          await addInvoice(Number(coin.coin) + Number(beforeCoin),coin.id, userHere.data.name ?? 'Hi' );
+          toast.success('Tăng số coin thành công')
+          setCoin({
+            id: '',
+            coin: ''
+          })
+        }
+       
       }
+    } catch (error) {
+      
+    }
+  }
+
+  const addInvoice = (cPrice , idUser, name) => {
+    const bodyy = {
+      name: `Admin nạp tiền cho ${name}`,
+      idUser: idUser,
+      coin: cPrice,
+      note: 'Nộp tiền',
+      status:'Thành công',
+      type:'User nạp tiền ví Paypal'
+    };
+    try {
+      const res = axios.post("/invoice", {...bodyy});
     } catch (error) {
       
     }

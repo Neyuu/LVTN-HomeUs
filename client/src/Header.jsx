@@ -147,7 +147,7 @@ export default function Header() {
                         <a onClick={(e) => e.preventDefault()}>
                           <Space>
                             <div>
-                              <img class="w-10 h-10 mr-5 rounded-full" src={profile?.avatar} alt="Rounded avatar"/>
+                              <img class="w-10 h-10 mr-5 rounded-full" src={`http://localhost:4000/${profile?.avatar}`} alt="Rounded avatar"/>
                             </div>
                           </Space>
                         </a>

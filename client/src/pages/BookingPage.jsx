@@ -237,7 +237,7 @@ export default function BookingPage() {
                 ></i>
               </label>
             ))}
-          {listService.length > 0 && (
+          {listOldService.length > 0 && (
             <Popconfirm
               title="Xác nhận"
               description="Bạn có muốn sử dụng coin để thanh toán cho các dịch vụ này"

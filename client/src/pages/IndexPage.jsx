@@ -272,7 +272,7 @@ export default function IndexPage() {
             {listBooker.map((item) => (
               // <span className="text-xs text-gray-500">{item.name}</span>
               <div class="text-center text-gray-500 dark:text-gray-400">
-                <img class="mx-auto mb-4 w-36 h-36 rounded-full" src={item.avatar} alt="Joseph Avatar" />
+                <img class="mx-auto mb-4 w-36 h-36 rounded-full" src={'http://localhost:4000/' +item.avatar} alt="Joseph Avatar" />
                 <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   <Link to={`/account/profile/${item._id}`}>{item.name}</Link>
                 </h3>

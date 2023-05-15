@@ -111,7 +111,7 @@ app.post("/login", async (req, res) => {
       res.status(422).json("pass not ok");
     }
   } else {
-    res.json("not found");
+    res.status(400).json("not found");
   }
 });
 
@@ -126,6 +126,11 @@ app.get("/profile", (req, res) => {
   } else {
     res.json(null);
   }
+});
+
+app.get("/detail-profile/:id", async(req, res) => {
+  const { name } = await User.findById(req.params.id);
+      res.json({ name});
 });
 
 app.post("/logout", (req, res) => {
@@ -550,7 +555,7 @@ app.get("/detail-booker/:id", async (req, res) => {
 });
 
 app.get("/get-list-booking-all", async (req, res) => {
-  const booking = await Booking.find({status :"booking"})
+  const booking = await Booking.find({})
     .populate("place")
     .populate({
       path: "place",
@@ -922,7 +927,7 @@ app.get("/api/config/paypal", (req, res) => {
 });
 
 app.get("/list-invoice", async (req, res) => {
-  const data = await Invoice.find();
+  const data = await Invoice.find().sort({ _id: -1 });
 
   if (data) {
     return res.json(data);

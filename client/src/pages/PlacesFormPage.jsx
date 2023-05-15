@@ -302,7 +302,7 @@ export default function PlacesFormPage() {
                     className="block bg-white p-1 rounded-full"
                     to={`/account/profile/${item._id}`}
                   >
-                    <img className="w-16 rounded-full" src={item.avatar} />
+                    <img className="w-16 rounded-full" src={'http://localhost:4000/' +item.avatar} />
                   </Link>
                   {/* Username */}
                   <span className="text-xs text-gray-500">{item.name}</span>
