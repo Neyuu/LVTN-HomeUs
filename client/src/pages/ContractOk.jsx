@@ -108,7 +108,7 @@ export default function ContractOK() {
       <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
         <div>
           {booking.typeOption === "shortTerm" ? (
-            <BookingDates booking={booking} />
+            <BookingDates booking={booking} className={"font-bold mb-2"} />
           ) : (
             <>
               <h3 className="font-bold mb-2">Gói Dài Hạn</h3>
@@ -214,27 +214,39 @@ export default function ContractOK() {
           
           <div className="bg-white -mx-8 px-8 py-8 border-t">
             <div>
-              <h1 className="mb-4 font-semibold text-2xl">Góp ý bình luận</h1>
+              <h1 className="mb-4 font-semibold text-2xl mb-4">Liên hệ</h1>
             </div>
             <div>
-              <div className="col-span-6 sm:col-span-3 mt-3 flex justify-center">
-                <input
-                  type="text"
-                  name="first_name"
-                  id="first_name"
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  autoComplete="given-name"
-                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                />
-                {comment && (
-                  <button
-                    className="py-2 px-4 width-200 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    onClick={handleRating}
-                  >
-                    Góp ý
-                  </button>
-                )}
+            <div className="grid grid-cols-12 gap-4">
+                <div className="col-span-11">
+                  <input
+                    type="text"
+                    name="first_name"
+                    id="first_name"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    autoComplete="given-name"
+                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  />
+                </div>
+                <div>
+                  {comment ? (
+                    <button
+                      className="mt-1 py-2 px-4 width-200 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      onClick={handleRating}
+                    >
+                      Gửi
+                    </button>
+                    )
+                    :(
+                      <button
+                        className="mt-1 py-2 px-4 width-200 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      >
+                        Gửi
+                      </button>
+                    )
+                  }
+                </div>                
               </div>
               {booking?.reviews.length > 0 &&
                 booking?.reviews?.map((item) => (
@@ -260,8 +272,8 @@ export default function ContractOK() {
                             <div className="flex flex-col justify-start items-start space-y-2">
                               <p className="text-base font-medium leading-none text-gray-800 dark:text-white">
                                 {user._id == item?.idUser?._id
-                                  ? "Người bán"
-                                  : "Người mua"}
+                                  ? "Người cho thuê"
+                                  : "Người thuê"}
                               </p>
                               <p className="text-sm leading-none text-gray-600 dark:text-white">
                                 {formatDate(item?.date)}
