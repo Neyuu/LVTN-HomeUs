@@ -35,7 +35,8 @@ const placeSchema = new mongoose.Schema({
     }
   ],
   areas: { type: String },
-  numberBed: {type: String}
+  numberBed: {type: String},
+  isShowClient : Boolean
 }, {
   timestamps: true
 });
