@@ -61,6 +61,7 @@ function App() {
         
         
       <Routes>
+        
         <Route path="/" element={<Layout />}>
           <Route index element={<IndexPage />} />
           <Route path="/search/:text" element={<SearchPage />} />
@@ -84,6 +85,7 @@ function App() {
           <Route path="/account/recharge" element={<RechargePage/>} />    
           <Route path="/recharge" element={<IndexRechargePage/>} />  
         </Route>
+
         <Route element={<ProtectedRoute user={user?.isAdmin || false} />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/admin-room" element={<AdminRoom />} />
@@ -94,12 +96,14 @@ function App() {
           <Route path="/admin-room/:id" element={<AdminDetailRoom />} />
           <Route path="/list-invoice" element={<ListInvoice />} />
         </Route>
+
         <Route element={<ProtectedRoute user={user?.isBooker || false} />}>
           <Route path="/booker-dashboard" element={<AdminDashboard />} />         
           <Route path="/accept-booking" element={<AcceptBooking />} />         
           <Route path="/template-booking/:id" element={<TemplateBooking />} />         
           <Route path="/detail-booking/:id" element={<DetailBooking />} />         
           </Route>
+
       </Routes>
       <ToastContainer />
     </UserContextProvider>
