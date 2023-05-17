@@ -7,6 +7,8 @@ import { Col, Divider, Row, Typography } from 'antd';
 import support from "../assets/support.png";
 import homeus from "../assets/homeus.jpg";
 import housebanner from "../assets/house-banner.jpg";
+import { UserContext } from "../UserContext";
+import { useContext } from "react";
 
 export default function IndexPage() {
   const { Title } = Typography;
@@ -18,24 +20,36 @@ export default function IndexPage() {
   const [listBooker, setListBooker] = useState([]);
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
+  const { user, setUser } = useContext(UserContext);
+
   useEffect(() => {
     new Promise(async () => {
       await getListBooker();
     });
 
-    // axios.get("/places").then((response) => {
-    //   setPlaces(response.data);
-    // });
+    if (user) {
+      axios.get(`/places-all/${user?._id ?? 'null'}`).then((response) => {
+        setPlaces(response.data);
+      });
+  
+      axios.get(`/place-not-vip/${user?._id ?? 'null'}`).then((response) => {
+        setPlacesNotVip(response.data);
+      });
+    } else {
+      axios.get(`/places-all/${'null'}`).then((response) => {
+        setPlaces(response.data);
+      });
+  
+      axios.get(`/place-not-vip/${'null'}`).then((response) => {
+        setPlacesNotVip(response.data);
+      });
+    }
 
-    axios.get("/places").then((response) => {
-      setPlaces(response.data);
-    });
+  }, [user]);
 
-    axios.get("/place-not-vip").then((response) => {
-      setPlacesNotVip(response.data);
-    });
-
-  }, []);
+  console.log('====================================');
+  console.log(user);
+  console.log('====================================');
 
 
   // useEffect(() => {
