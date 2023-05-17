@@ -43,7 +43,7 @@ const Contact = () => {
               <div className="flex justify-center items-center">
                 <img
                   className="h-32 w-32 bg-white p-2 rounded-full shadow mb-4"
-                  src={profile.avatar}
+                  src={'http://localhost:4000/'+profile.avatar}
                   alt=""
                 />
                 </div>  
