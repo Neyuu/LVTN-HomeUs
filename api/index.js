@@ -81,6 +81,7 @@ app.post("/register", async (req, res) => {
         isBooker: false,
         acceptBooker: false,
         password: bcrypt.hashSync(password, bcryptSalt),
+        balanceCoin : 0
       });
       res.json(userDoc);
     }
@@ -358,7 +359,8 @@ app.put("/places", async (req, res) => {
 
 app.delete("/remove-room/:id", async (req, res) => {
   Place.findOneAndDelete({ _id: req.params.id }).then(ress => {
-    res.json("ok");
+    const result = Booking.deleteMany({ place: req.params.id })
+    return res.status(200).json('ok');
   })
 })
 
@@ -372,10 +374,11 @@ app.put("/change-status/:id", async (req, res) => {
   res.json("ok");
 });
 
-app.get("/places", async (req, res) => {
-  try {
+app.get("/places-all/:id", async (req, res) => {
+  const idd = req.params.id;
+  if (idd == 'null') {
     const listAll = await Place.find({ status: true, memberStatus: false, isVip: false });
-  
+    
     for (const item of listAll) {
       const today = new Date(item.dateCurrent);
       const timeExpired = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -390,16 +393,47 @@ app.get("/places", async (req, res) => {
     
     const updatedList = await Place.find({ status: true, memberStatus: false, isVip: false  });
     res.json(updatedList);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+  } else {
+    const listAll = await Place.find({ status: true, memberStatus: false, isVip: false});
+    
+      for (const item of listAll) {
+        const today = new Date(item.dateCurrent);
+        const timeExpired = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+    
+        if (today < timeExpired) {
+          console.log('hi');
+        } else {
+          console.log('man');
+          await Place.findByIdAndUpdate(item._id, { isVip: true ,isExpired: true });
+        }
+      }
+      
+      const updatedList = await Place.find({ status: true, memberStatus: false, isVip: false , owner: { $ne: idd }  });
+      res.json(updatedList);
   }
 });
 
-app.get("/place-not-vip", async (req, res) => {
-  try {
+app.get("/place-not-vip/:id", async (req, res) => {
+  if (req.params.id == 'null') {
     const listAll = await Place.find({ status: true, memberStatus: false, isVip: true, isExpired: false });
-  
+    
+      for (const item of listAll) {
+        const today = new Date(item.dateCurrent);
+        const timeExpired = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+    
+        if (today < timeExpired) {
+          console.log('hi');
+        } else {
+          console.log('man');
+          await Place.findByIdAndUpdate(item._id, { isVip: true, isExpired: true });
+        }
+      }
+      
+      const updatedList = await Place.find({ status: true, memberStatus: false, isVip: true, isExpired: false  });
+      res.json(updatedList);
+  } else {
+    const listAll = await Place.find({ status: true, memberStatus: false, isVip: true, isExpired: false});
+    
     for (const item of listAll) {
       const today = new Date(item.dateCurrent);
       const timeExpired = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -412,11 +446,8 @@ app.get("/place-not-vip", async (req, res) => {
       }
     }
     
-    const updatedList = await Place.find({ status: true, memberStatus: false, isVip: true, isExpired: false  });
+    const updatedList = await Place.find({ status: true, memberStatus: false, isVip: true, isExpired: false , owner: { $ne: req.params.id }  });
     res.json(updatedList);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
   }
 });
 
