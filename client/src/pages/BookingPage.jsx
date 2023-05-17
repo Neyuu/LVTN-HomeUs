@@ -99,7 +99,7 @@ export default function BookingPage() {
       });
 
       if (res.status === 200) {
-        toast.success("Bình luận thành công");
+        toast.success("Gửi thành công");
 
         setComment("");
       }

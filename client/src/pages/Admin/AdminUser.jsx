@@ -88,7 +88,7 @@ const AdminUser = () => {
       coin: cPrice,
       note: 'Nộp tiền',
       status:'Thành công',
-      type:'User nạp tiền ví Paypal'
+      type:'Admin nạp tiền'
     };
     try {
       const res = axios.post("/invoice", {...bodyy});

@@ -62,9 +62,9 @@ const AdminRoom = () => {
               <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                 Duyệt Bài
               </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              {/* <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                 Trạng Thái
-              </th>
+              </th> */}
               <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                 Role
               </th>
@@ -111,7 +111,7 @@ const AdminRoom = () => {
                       </span>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  {/* <td className="px-6 py-4">
                     {e.memberStatus ? (
                       <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
                         <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
@@ -123,7 +123,7 @@ const AdminRoom = () => {
                         Chưa Duyệt
                       </span>
                     )}
-                  </td>
+                  </td> */}
                   <td className="px-6 py-4">{e?.owner?.name}</td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">

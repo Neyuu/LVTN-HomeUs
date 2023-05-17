@@ -98,7 +98,7 @@ export default function PlacePage() {
       });
 
       if (res.status === 200) {
-        toast.success("Bình luận thành công");
+        toast.success("Gửi thành công");
         axios.get(`/places/${id}`).then((response) => {
           setPlace(response.data);
         });
@@ -566,7 +566,7 @@ export default function PlacePage() {
                     <div className="mt-6 flex justify-start items-center flex-row space-x-2.5">
                       <div>
                         <img
-                            src={item?.idUser?.avatar}
+                            src={'http://localhost:4000/'+item?.idUser?.avatar}
                             className={`h-10 w-10 object-cover rounded-full`}
                           alt="girl-avatar"
                         />
