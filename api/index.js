@@ -358,11 +358,17 @@ app.put("/places", async (req, res) => {
 });
 
 app.delete("/remove-room/:id", async (req, res) => {
-  Place.findOneAndDelete({ _id: req.params.id }).then(ress => {
-    const result = Booking.deleteMany({ place: req.params.id })
-    return res.status(200).json('ok');
-  })
-})
+  try {
+    const deletePlacePromise = Place.findOneAndDelete({ _id: req.params.id });
+    const deleteBookingsPromise = Booking.deleteMany({ place: req.params.id });
+
+    await Promise.all([deletePlacePromise, deleteBookingsPromise]);
+
+    res.status(200).json('ok');
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 app.put("/change-status/:id", async (req, res) => {
   const id = req.params.id;
