@@ -83,7 +83,7 @@ export default function ProfilePage() {
     const cPrice = Number(price) * 23000;
 
     try {
-      const res = await axios.put(`/update-coin/${user._id}`,{balanceCoin: Number(cPrice) + Number(user.balanceCoin)});
+      const res = await axios.put(`/update-coin/${user._id}`,{balanceCoin: Number(cPrice) + Number(user.balanceCoin) ?? 0});
       if (res.status === 200) {
         setPrice('');
         toast.success('Tăng số coin thành công');

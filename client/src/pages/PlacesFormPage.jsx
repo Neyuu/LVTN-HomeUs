@@ -56,6 +56,8 @@ export default function PlacesFormPage() {
       })
       setBooker(data.personBooker)
       setPrice(data.price);
+      setAreas(data.areas);
+      setNumberBed(data.numberBed);
     });
   }, [id]);
 

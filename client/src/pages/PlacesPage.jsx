@@ -48,34 +48,19 @@ export default function PlacesPage() {
     if (user && user.balanceCoin < 100) {
       toast.error('Số Dư Không Đủ Vui Lòng Nạp Thêm Tiền');
       return;
+    } else {
+      const res = await axios.put(`/add-to-time-expried/${id}`, {
+        isExpired: false,
+        dateCurrent: Date.now(),
+        idUser: user._id,
+        balance: user.balanceCoin
+      })
+      if (res.status === 200) {
+        toast.success('Gia hạn thành công');
+        fetch();
+        setLoader(false);
+      }
     }
-
-    
-    const res = await axios.put(`/add-to-time-expried/${id}`, {
-      isExpired: false,
-      dateCurrent: Date.now(),
-      idUser: user._id,
-      balance: user.balanceCoin
-    })
-    if (res.status === 200) {
-      toast.success('Gia hạn thành công');
-      fetch();
-      setLoader(false);
-    }
-
-    // const addPayPalScript = async () => {
-    //   const { data: clientId } = await axios.get("/api/config/paypal");
-    //   const script = document.createElement("script");
-    //   script.type = "text/javascript";
-    //   script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-    //   script.async = true;
-    //   script.onload = () => {
-    //     setLoader(true)
-    //   };
-    //   document.body.appendChild(script);
-    // };
-    // addPayPalScript();
-
   }
 
   const confirmVip = async (coin, id) => {
@@ -84,19 +69,19 @@ export default function PlacesPage() {
       toast.error('Số Dư Không Đủ Vui Lòng Nạp Thêm Tiền');
       return;
     }
-
-    
-    const res = await axios.put(`/add-to-time-expried-vip/${id}`, {
-      isVip: false,
-      dateCurrent: Date.now(),
-      idUser: user._id,
-      balance: user.balanceCoin
-    })
-    if (res.status === 200) {
-      toast.success('Gia hạn thành công');
-      fetch();
-      setLoader(false);
-    }
+    else {
+      const res = await axios.put(`/add-to-time-expried-vip/${id}`, {
+        isVip: false,
+        dateCurrent: Date.now(),
+        idUser: user._id,
+        balance: user.balanceCoin
+      })
+      if (res.status === 200) {
+        toast.success('Gia hạn thành công');
+        fetch();
+        setLoader(false);
+      }
+}
   }
 
   const content = (
@@ -138,8 +123,6 @@ export default function PlacesPage() {
       </>
     )
   }
-
-  console.log(paySuccess);
 
   return (
     <div>

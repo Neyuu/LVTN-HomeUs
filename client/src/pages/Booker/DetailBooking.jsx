@@ -36,13 +36,16 @@ const DetailBooking = () => {
     try {
       const res = await axios.put(`/update-status/${id}`, { status: status });
       if (res.status === 200) {
-        toast.success("Xác nhận hợp đồng thành công");
+        if (status === 'done') {
+          toast.success("Xác nhận hợp đồng thành công");
+        }
+
+        if (status === 'cancel') {
+          toast.success("Hợp đồng đã được hủy");
+        }
         fetchRoom();
       }
     } catch (error) {
-      console.log("====================================");
-      console.log(error);
-      console.log("====================================");
     }
   };
 
@@ -60,7 +63,7 @@ const DetailBooking = () => {
               <div className="relative">
                 <img
                   className="h-32 w-32 bg-white p-2 rounded-full shadow mb-4"
-                  src={detail?.place?.owner?.avatar}
+                  src={`http://localhost:4000/`+detail?.place?.owner?.avatar}
                   alt=""
                 />
                 {
@@ -83,7 +86,7 @@ const DetailBooking = () => {
               <div className="relative">
                 <img
                   className="h-32 w-32 bg-white p-2 rounded-full shadow mb-4"
-                  src={detail?.user?.avatar}
+                  src={`http://localhost:4000/`+detail?.user?.avatar}
                   alt=""
                 />
                 {
@@ -183,7 +186,7 @@ const DetailBooking = () => {
       <p className="italic text-red-700 font-small">
         Hợp đồng sau khi hủy sẽ không thể hoàn tác lại nữa
       </p>
-      {detail?.status === "review" ? (
+      {detail?.status === "review" &&(
         <div className="flex justify-center items-center mt-3">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
@@ -192,16 +195,38 @@ const DetailBooking = () => {
             Xác nhận hợp đồng
           </button>
         </div>
-      ) : (
-        <div className="flex justify-center items-center mt-3">
-          <button
-            className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full mr-2"
-            onClick={() => handleBooking("cancel")}
-          >
-            Hủy Hợp Đồng
-          </button>
-        </div>
       )}
+
+
+      {
+        detail?.status === "done" && (
+          (
+            <div className="flex justify-center items-center mt-3">
+              <button
+                className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full mr-2"
+                onClick={() => handleBooking("cancel")}
+              >
+                Hủy Hợp Đồng
+              </button>
+            </div>
+          )
+        )
+      }
+
+{
+        detail?.status === "cancel" && (
+          (
+            <div className="flex justify-center items-center mt-3">
+              <button
+                className="bg-amber-500 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-full mr-2"
+                onClick={() => handleBooking("done")}
+              >
+                Khôi phục hợp đồng
+              </button>
+            </div>
+          )
+        )
+      }
     </div>
   );
 };
