@@ -160,8 +160,8 @@ return (
                     <Space>
                       {
                         (userr.isAdmin === true)
-                        ? <img class="w-10 h-10 rounded-full" src={userr?.avatar} alt="Rounded avatar"/>
-                        : <img class="w-10 h-10 rounded-full" src={userr?.avatar} alt="Rounded avatar"/>
+                        ? <img class="w-10 h-10 rounded-full" src={`http://localhost:4000/` + userr?.avatar} alt="Rounded avatar"/>
+                        : <img class="w-10 h-10 rounded-full" src={`http://localhost:4000/` + userr?.avatar} alt="Rounded avatar"/>
                       }
                     </Space>
                   </a>

@@ -30,12 +30,24 @@ export default function PlaceGallery({place}) {
   return (
     <div className="relative">
       <div className="md:grid md:grid-cols-3 md:gap-2 rounded-lg overflow-hidden">
-        {(place.photos?.length > 0 && place.photos?.length < 7) && place.photos?.map(photo => (
+        {(place.photos?.length > 0 && place.photos?.length < 6) && place.photos?.slice(0, 3).map(photo => (
           <a data-fancybox="gallery" href={'http://localhost:4000/'+photo}>
             <img className="h-64 w-full object-cover" src={'http://localhost:4000/'+photo} alt=""/>
           </a>
         ))}
-        
+        {(place.photos?.length > 0 && place.photos?.length < 6) && place.photos?.slice(3).map(photo => (
+          <a data-fancybox="gallery" href={'http://localhost:4000/'+photo}>
+          </a>
+        ))}
+        {(place.photos?.length > 5) && place.photos?.slice(0, 6).map(photo => (
+          <a data-fancybox="gallery" href={'http://localhost:4000/'+photo}>
+            <img className="h-64 w-full object-cover" src={'http://localhost:4000/'+photo} alt=""/>
+          </a>
+        ))}
+        {(place.photos?.length > 5) && place.photos?.slice(6).map(photo => (
+          <a data-fancybox="gallery" href={'http://localhost:4000/'+photo}>
+          </a>
+        ))}
       </div>
     </div>
   );

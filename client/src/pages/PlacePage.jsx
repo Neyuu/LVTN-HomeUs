@@ -263,7 +263,7 @@ export default function PlacePage() {
                 Liên hệ với
               </div>
               <div className="grid grid-cols-4 my-4 mx-4 flex flex-col items-center pb-4 border-b border-gray-400">
-                <img class="w-16 h-16 rounded-full shadow-lg" src={place?.personBooker.avatar} alt="Bonnie image"/>
+                <img class="w-16 h-16 rounded-full shadow-lg" src={`http://localhost:4000/`+place?.personBooker.avatar} alt="Bonnie image"/>
                 <Link
                   className="block bg-white p-1 rounded-full col-span-3 "
                   to={`/account/profile/${place?.personBooker._id}`}
