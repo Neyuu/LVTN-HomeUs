@@ -42,6 +42,7 @@ const DetailBooking = () => {
 
         if (status === 'cancel') {
           toast.success("Hợp đồng đã được hủy");
+          
         }
         fetchRoom();
       }
