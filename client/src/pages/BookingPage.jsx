@@ -241,9 +241,10 @@ export default function BookingPage() {
             <Popconfirm
               title="Xác nhận"
               description="Bạn có muốn sử dụng coin để thanh toán cho các dịch vụ này"
-              okText="Yes"
-              cancelText="No"
+              okText="Đồng ý"
+              cancelText="Bỏ qua"
               onConfirm={() => handleRegisterService()}
+              okType="default"
             >
               <button className="bg-lime-500 hover:bg-lime-700 text-white font-light py-2 px-4 my-4 rounded-full">
                 Đăng Ký Thêm Dịch Vụ
