@@ -51,6 +51,7 @@ export default function PlacesPage() {
     } else {
       const res = await axios.put(`/add-to-time-expried/${id}`, {
         isExpired: false,
+        isVip: true,
         dateCurrent: Date.now(),
         idUser: user._id,
         balance: user.balanceCoin

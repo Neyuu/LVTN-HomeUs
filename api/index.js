@@ -32,7 +32,7 @@ app.use(
 );
 
 mongoose.set("strictQuery", false);
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }); // Connect tới DB
 
 function getUserDataFromReq(req) {
   return new Promise((resolve, reject) => {
@@ -41,7 +41,7 @@ function getUserDataFromReq(req) {
       resolve(userData);
     });
   });
-}
+} // Check account đã đăng nhập hay chưa để vào dùng
 
 function formatDate(date) {
   const year = date.getFullYear().toString();
@@ -70,7 +70,7 @@ app.post("/register", async (req, res) => {
         avatar,
         img,
         acceptBooker: false,
-        password: bcrypt.hashSync(password, bcryptSalt),
+        password: bcrypt.hashSync(password, bcryptSalt), // hash pass thành chuỗi khác để chống hack
       });
       res.json(userDoc);
     } else {
@@ -857,6 +857,7 @@ app.put("/add-to-time-expried/:id", async (req, res) => {
   await Place.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(req.params.id) },
     {
+      isVip: req.body.isVip,
       isExpired: req.body.isExpired,
       dateCurrent: req.body.dateCurrent
     }
