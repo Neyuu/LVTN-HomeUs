@@ -518,7 +518,7 @@ export default function PlacePage() {
         </div>
         <div>
           {
-            user && (
+            user ? (
               <div className="grid grid-cols-10 gap-4">
                 <div className="col-span-9">
                   <input
@@ -550,6 +550,9 @@ export default function PlacePage() {
                   }
                 </div>                
               </div>
+            )
+            : (
+              <>Đăng nhập để đánh giá</>              
             )
           }
           {
